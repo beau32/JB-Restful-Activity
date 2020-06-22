@@ -9,7 +9,14 @@ var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
 var trigger     = require('./routes/trigger');
-
+var connect = require('connect');
+var logger  = require('express-logger');
+var cookieParser = require('cookie-parser');
+var sstatic = require('serve-static')
+var methodOverride  = require('method-override')
+var favicon = require('serve-favicon')
+var errorHandler = require('errorhandler') 
+var cookieSession = require('cookie-session');
 var app = express();
 
 // Register configs for the environments where the app functions
@@ -40,26 +47,26 @@ function tokenFromJWT( req, res, next ) {
 }
 
 // Use the cookie-based session  middleware
-app.use(express.cookieParser());
+app.use(cookieParser());
 
 // TODO: MaxAge for cookie based on token exp?
-app.use(express.cookieSession({secret: "HelloWorld-CookieSecret"}));
+app.use(cookieSession({secret: "HelloWorld-CookieSecret"}));
 
 // Configure Express
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.favicon());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride());
+//app.use(favicon());
+//app.use(app.router);
+app.use(sstatic(path.join(__dirname, 'public')));
 
 // Express in Development Mode
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 // HubExchange Routes
