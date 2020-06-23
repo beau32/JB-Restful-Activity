@@ -46,15 +46,6 @@ define([], function(){
             "format": "json",
             "useJwt": false,
             "timeout": 3000
-        },
-
-        "edit": {
-            "uri": "index.html",
-            "maxHeight": 500,
-            "maxWidth": 750,
-            "minHeight": 300,
-            "minWidth": 450,
-            "steps": 1
         }
-};
+    };
 });

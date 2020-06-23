@@ -1,9 +1,11 @@
 {
-    "key": "jbdev-ixn-api-v1-test-harness-trigger",
+    "icon": "images/jb-icon.jpg",
+    "iconSmall": "images/jb-icon.jpg", 
+    "key": "ebc9dc70-fa90-4b22-a8c5-fb8d4c8f03e8",
     "lang": {
         "en-US": {
-            "name": "Hello World 2",
-            "description": "This is a simple trigger for the Hello World demo app"
+            "name": "ContactSpace 2",
+            "description": "This is a simple trigger for the demo app"
         }
     },
     "version": "2.0",
