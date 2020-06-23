@@ -70,7 +70,7 @@ define( function( require ) {
 
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
-    connection.trigger('updateStep', function(step){
+     connection.on('clickedNext', function(step){
     	var value = $('#Initative').val();
         if( !value ) {
             // Notify user they need to select a value 
