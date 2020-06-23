@@ -56,7 +56,8 @@ function tokenFromJWT( req, res, next ) {
     // we can get away with this. Otherwise, you should use a
     // persistent storage system and manage tokens properly with
     // node-fuel
-    req.session.token = jwtData.token;
+    //req.session.token = jwtData.token;
+    req.session.token = appstr;
     next();
 }
 

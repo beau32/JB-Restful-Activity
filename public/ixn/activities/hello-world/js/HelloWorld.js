@@ -70,7 +70,32 @@ define( function( require ) {
 
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
-    //connection.trigger('updateStep', nextStep);
+    connection.trigger('updateStep', function(step){
+    	var value = $('#Initative').val();
+        if( !value ) {
+            // Notify user they need to select a value 
+            $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
+        } else {
+            // Successful change
+            // When we're all done, define our payload
+            data = {
+                initative: $('#Initative').val(),
+                dataset: $('#Dataset').val(),
+                sfcampaignid: $('SFCampaignid').val()
+            };
+
+            uiPayload = {
+                options: data,
+                description: 'This is a configuration instance.'
+            };
+
+            etPayload = {
+                filter: '<FilterDefinition Source=\'helloWorldNTO\'><ConditionSet Operator=\'AND\' ConditionSetName=\'Grouping\'><Condition ID=\'ece15cd0-8893-e311-b943-78e3b50b4f00\' isParam=\'false\' Operator=\'Equal\' conditionValid=\'1\'><Value><![CDATA[' + data.originEventStart + ']]></Value></Condition></ConditionSet></FilterDefinition>'
+            };
+
+            connection.trigger( 'save', uiPayload, etPayload );
+        }
+    });
 
 	// When everything has been configured for this activity, trigger
 	// the save:
