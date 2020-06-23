@@ -20,7 +20,6 @@ var cookieSession = require('cookie-session');
 
 var app = express();
 
-var appstr = "3120816230";
 // Use the cookie-based session  middleware
 app.use(cookieParser());
 
@@ -44,30 +43,14 @@ if ('development' == app.get('env')) {
   app.use(errorHandler());
 }
 
-function tokenFromJWT( req, res, next ) {
-    // Setup the signature for decoding the JWT
-    var jwt = new JWT({appSignature: appstr});
-    
-    // Object representing the data in the JWT
-    var jwtData = jwt.decode( req );
-
-    // Bolt the data we need to make this call onto the session.
-    // Since the UI for this app is only used as a management console,
-    // we can get away with this. Otherwise, you should use a
-    // persistent storage system and manage tokens properly with
-    // node-fuel
-    //req.session.token = jwtData.token;
-    req.session.token = appstr;
-    next();
-}
-
 // HubExchange Routes
 app.get('/', routes.index );
-app.post('/login', tokenFromJWT, routes.login );
+app.post('/login', routes.login );
 app.post('/logout', routes.logout );
 
 // Custom Hello World Activity Routes
 app.post('/ixn/activities/hello-world/save/', activity.save );
+app.post('/ixn/activities/hello-world/edit/', activity.edit );
 app.post('/ixn/activities/hello-world/validate/', activity.validate );
 app.post('/ixn/activities/hello-world/publish/', activity.publish );
 app.post('/ixn/activities/hello-world/execute/', activity.execute );

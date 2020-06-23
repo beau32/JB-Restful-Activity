@@ -2,7 +2,7 @@
 
 // Deps
 var activity = require('./activity');
-
+var appstr = "3120816230";
 /*
  * GET home page.
  */
@@ -22,6 +22,7 @@ exports.index = function(req, res){
 
 exports.login = function( req, res ) {
     console.log( 'req.body: ', req.body );
+    req.session.token = appstr;
     res.redirect( '/' );
 };
 
