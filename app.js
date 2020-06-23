@@ -17,35 +17,10 @@ var methodOverride  = require('method-override')
 var favicon = require('serve-favicon')
 var errorHandler = require('errorhandler') 
 var cookieSession = require('cookie-session');
+
 var app = express();
 
-// Register configs for the environments where the app functions
-// , these can be stored in a separate file using a module like config
-var APIKeys = {
-    appId           : '__insert_your_app_id__',
-    clientId        : '__insert_your_app_client_id__',
-    clientSecret    : '__insert_your_app_client_secret__',
-    appSignature    : '__insert_your_app_signature__',
-    authUrl         : 'https://auth.exacttargetapis.com/v1/requestToken?legacy=1'
-};
-
-// Simple custom middleware
-function tokenFromJWT( req, res, next ) {
-    // Setup the signature for decoding the JWT
-    var jwt = new JWT({appSignature: APIKeys.appSignature});
-    
-    // Object representing the data in the JWT
-    var jwtData = jwt.decode( req );
-
-    // Bolt the data we need to make this call onto the session.
-    // Since the UI for this app is only used as a management console,
-    // we can get away with this. Otherwise, you should use a
-    // persistent storage system and manage tokens properly with
-    // node-fuel
-    req.session.token = jwtData.token;
-    next();
-}
-
+var appstr = "3120816230";
 // Use the cookie-based session  middleware
 app.use(cookieParser());
 
@@ -67,6 +42,22 @@ app.use(sstatic(path.join(__dirname, 'public')));
 // Express in Development Mode
 if ('development' == app.get('env')) {
   app.use(errorHandler());
+}
+
+function tokenFromJWT( req, res, next ) {
+    // Setup the signature for decoding the JWT
+    var jwt = new JWT({appSignature: appstr});
+    
+    // Object representing the data in the JWT
+    var jwtData = jwt.decode( req );
+
+    // Bolt the data we need to make this call onto the session.
+    // Since the UI for this app is only used as a management console,
+    // we can get away with this. Otherwise, you should use a
+    // persistent storage system and manage tokens properly with
+    // node-fuel
+    req.session.token = jwtData.token;
+    next();
 }
 
 // HubExchange Routes

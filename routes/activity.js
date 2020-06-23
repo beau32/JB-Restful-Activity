@@ -1,8 +1,7 @@
 'use strict';
 var util = require( 'util' );
-
-// Deps
-var util = require( 'util' );
+const https = require('https');
+var fs = require('fs');
 
 exports.logExecuteData = [];
 
@@ -51,8 +50,14 @@ function logData( req ) {
 exports.edit = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-    logData( req );
-    res.send( 200, 'Edit' );
+
+    fs.readFile('helloworld.txt', 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(data);
+    });
+
 };
 
 /*
@@ -61,6 +66,12 @@ exports.edit = function( req, res ) {
 exports.save = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
+    
+    fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
+        if (err) return console.log(err);
+        console.log('Hello World > helloworld.txt');
+    });
+
     logData( req );
     res.send( 200, 'Save' );
 };
@@ -71,8 +82,30 @@ exports.save = function( req, res ) {
 exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-    logData( req );
-    res.send( 200, 'Execute' );
+
+
+    const https = require('https');
+
+    https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
+      let data = '';
+
+      // A chunk of data has been recieved.
+      resp.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      // The whole response has been received. Print out the result.
+      resp.on('end', () => {
+        console.log(JSON.parse(data).explanation);
+      });
+
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    }).on("complete", (err) => {
+        logData( req );
+        res.send( 200, 'Execute' );
+    });
+    
 };
 
 /*

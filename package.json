@@ -13,6 +13,7 @@
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "express-logger": "0.0.3",
+    "fs": "0.0.1-security",
     "fuel": "^0.6.0",
     "jade": "*",
     "jwt-simple": "^0.5.6",
