@@ -6,7 +6,7 @@ define([], function(){
         "partnerApiObjectTypeId": "IXN.CustomActivity.REST",
         "lang": {
             "en-US": {        
-                "name": "Simple Activity",
+                "name": "Contact Space",
                 "description": "Activity simply posts the data into an array for display on the App's home page."
             }
         },
@@ -49,9 +49,12 @@ define([], function(){
         },
 
         "edit": {
-            "uri": "https://journeyext.herokuapp.com/ixn/activities/hello-world/",
-            "height": 400,
-            "width": 500
+            "uri": "index.html",
+            "maxHeight": 500,
+            "maxWidth": 750,
+            "minHeight": 300,
+            "minWidth": 450,
+            "steps": 1
         }
 };
 });
