@@ -48,14 +48,14 @@ app.post('/login', routes.login );
 app.post('/logout', routes.logout );
 
 // Custom Hello World Activity Routes
-app.post('/ixn/activities/hello-world/save/', activity.save );
-app.post('/ixn/activities/hello-world/edit/', activity.edit );
-app.post('/ixn/activities/hello-world/validate/', activity.validate );
-app.post('/ixn/activities/hello-world/publish/', activity.publish );
-app.post('/ixn/activities/hello-world/execute/', activity.execute );
+app.post('/ixn/activities/ContactSpace/save/', activity.save );
+app.post('/ixn/activities/ContactSpace/edit/', activity.edit );
+app.post('/ixn/activities/ContactSpace/validate/', activity.validate );
+app.post('/ixn/activities/ContactSpace/publish/', activity.publish );
+app.post('/ixn/activities/ContactSpace/execute/', activity.execute );
 
 // Custom Hello World Trigger Route
-app.post('/ixn/triggers/hello-world/', trigger.edit );
+app.post('/ixn/triggers/ContactSpace/', trigger.edit );
 
 // Abstract Event Handler
 app.post('/fireEvent/:type', function( req, res ) {
