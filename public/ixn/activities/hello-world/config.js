@@ -13,9 +13,24 @@ define([], function(){
         "category": "messaging",
         "version": "1.0",
         "apiVersion": "1.0",
+        "edit": {
+            "uri": "index.html",
+            "maxHeight": 500,
+            "maxWidth": 750,
+            "minHeight": 300,
+            "minWidth": 450,
+            "steps": 1
+        },
        "execute": {
             "uri": "https://journeyext.herokuapp.com/ixn/activities/hello-world/execute/",
-			"inArguments": [],
+			"inArguments": [
+                {
+                    "contactIdentifier": "{{Contact.Key}}"
+                },
+                {
+                    "emailAddress": "{{InteractionDefaults.Email}}"
+                }
+            ],
 			"outArguments": [],
             "verb": "POST",
 			"body": "",
