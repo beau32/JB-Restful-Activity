@@ -3,6 +3,7 @@
 // -------------------
 var express     = require('express');
 var http        = require('http');
+var https        = require('https');
 var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
@@ -16,6 +17,8 @@ var methodOverride  = require('method-override')
 var favicon = require('serve-favicon')
 var errorHandler = require('errorhandler') 
 var cookieSession = require('cookie-session');
+var url = require('url');
+var axios = require('axios');
 
 var app = express();
 
@@ -26,7 +29,7 @@ app.use(cookieParser());
 app.use(cookieSession({secret: "HelloWorld-CookieSecret"}));
 
 // Configure Express
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 //app.use(logger('dev'));
@@ -44,8 +47,8 @@ if ('development' == app.get('env')) {
 
 // HubExchange Routes
 app.get('/', routes.index );
-app.post('/login', routes.login );
-app.post('/logout', routes.logout );
+app.get('/login', routes.login );
+app.get('/logout', routes.logout );
 
 // Custom Hello World Activity Routes
 app.post('/ixn/activities/ContactSpace/save/', activity.save );
@@ -59,43 +62,34 @@ app.post('/ixn/triggers/ContactSpace/', trigger.edit );
 
 // Abstract Event Handler
 app.post('/fireEvent/:type', function( req, res ) {
-    var data = req.body;
-    var triggerIdFromAppExtensionInAppCenter = '__insert_your_trigger_key_here__';
-    var JB_EVENT_API = 'https://www.exacttargetapis.com/interaction-experimental/v1/events';
-    var reqOpts = {};
 
-    if( 'helloWorld' !== req.params.type ) {
-        res.send( 400, 'Unknown route param: "' + req.params.type +'"' );
-    } else {
-        // Hydrate the request
-        reqOpts = {
-            url: JB_EVENT_API,
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + req.session.token
-            },
-            body: JSON.stringify({
-                ContactKey: data.alternativeEmail,
-                EventDefinitionKey: triggerIdFromAppExtensionInAppCenter,
-                Data: data
-            })
-        };
+    console.log(req.body);
 
-        request( reqOpts, function( error, response, body ) {
-            if( error ) {
-                console.error( 'ERROR: ', error );
-                res.send( response, 400, error );
-            } else {
-                res.send( body, 200, response);
-            }
-        }.bind( this ) );
-    }
+    var call_body = null;
+    var call_url = url.parse(req.body.call_url);
+
+    if(req.body.call_body)
+        var call_body = req.body.call_body;
+        
+
+    axios.post(call_url.href,call_body)
+        .then((ares) => {
+            console.log('Status:', ares.status);
+            console.log('Body: ', ares.data);
+            res.status(200).send(JSON.stringify(ares.data));
+
+        }).catch((err) => {
+            console.error(err);
+            res.status(200).send(ares.data);
+    });
+
 });
 
 app.get('/clearList', function( req, res ) {
 	// The client makes this request to get the data
 	activity.logExecuteData = [];
-	res.send( 200 );
+    res.status(200).send(err);
+	
 });
 
 

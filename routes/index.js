@@ -7,6 +7,7 @@ var appstr = "3120816230";
  * GET home page.
  */
 exports.index = function(req, res){
+
     if( !req.session.token ) {
         res.render( 'index', {
             title: 'Unauthenticated',
@@ -14,7 +15,7 @@ exports.index = function(req, res){
         });
     } else {
         res.render( 'index', {
-            title: 'Hello World Custom Interaction Example',
+            title: 'Custom Interaction Example',
             results: activity.logExecuteData,
         });
     }

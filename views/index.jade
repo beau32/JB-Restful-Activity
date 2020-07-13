@@ -12,12 +12,12 @@ block content
     div#input
         div
             fieldset
-                label(for='initiative') Enter CS Initiative:
-                    input(id='initiative',type='text',value='',name='initiative')
-                label(for='dataset') Enter CS Dataset:
-                    input(id='dataset',type='text',value='',name='dataset')
-                label(for='campaignid') Enter SF Campaign ID:
-                    input(id='campaignid',type='text',value='',name='campaignid')
+                label(for='url') Enter URL:
+                input(id='call_url',type='text',value='',name='call_url')
+                label(for='body') Enter Body:
+                input(id='call_body',type='text',value='',name='call_body')
+                br
+
                 div.buttonWrap
                     input(id='emailSubmit',type='submit',value='Fire the Event')
     div#output
@@ -27,5 +27,5 @@ block content
         div.buttonWrap
             button(id='fetch') Get latest results
         div.buttonWrap
-            button(id='clear') Clear Hello World Activity Results
+            button(id='clear') Clear Activity Results
         ul.results

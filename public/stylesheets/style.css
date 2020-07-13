@@ -35,6 +35,9 @@ body {
     margin-bottom: 10%;
 }
 
+input#url, input#body{
+    width: auto;
+}
 #url {
     width: 100%;
 }

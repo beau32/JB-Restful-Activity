@@ -7,8 +7,11 @@
 $(function() {
 
     // Cache some vars
-    var $emailInput     = $('#email');
-    var $oes            = $('#originEventStart');
+    var $call_url = $('#call_url');
+    var $call_body = $('#call_body');
+    
+    //var $emailInput     = $('#email');
+    //var $oes            = $('#originEventStart');
     var $emailSubmit    = $('#emailSubmit');
     var $reset          = $('#reset');
     var $clear          = $('#clear');
@@ -17,19 +20,18 @@ $(function() {
 
     // When someone submits this form, fire the event to the custom trigger
     $emailSubmit.on('click', function( evt ) {
-        var altEmail    = $emailInput.val();
-        var oesVal      = $oes.val();
+       
         var reqBody     = {
-            alternativeEmail: altEmail,
-            originEventStart: oesVal
+            call_url:  $call_url.val(),
+            call_body: $call_body.val()
         };
-        
+        console.log(reqBody);
         // Disable the inputs until we receive a resposne
-        $emailInput.attr( 'disabled', 'disabled' );
-        $oes.attr( 'disabled', 'disabled' );
+        $call_url.attr( 'disabled', 'disabled' );
+        $call_body.attr( 'disabled', 'disabled' );
         $emailSubmit.attr( 'disabled', 'disabled' );
 
-        $.ajax( '/fireEvent/helloWorld', {
+        $.ajax( '/fireEvent/post', {
             type: 'POST',
             data: reqBody,
             error: function( xhr, status, error ) {
@@ -42,8 +44,8 @@ $(function() {
             },
             complete: function() {
                 // Enable the inputs until we receive a resposne
-                $emailInput.removeAttr( 'disabled' );
-                $oes.removeAttr( 'disabled' );
+                $call_url.removeAttr( 'disabled' );
+                $call_body.removeAttr( 'disabled' );
                 $emailSubmit.removeAttr( 'disabled' );
             }
         });
