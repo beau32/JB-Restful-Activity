@@ -8,17 +8,9 @@ define( function( require ) {
 
     $(window).ready(function() {
         connection.trigger('ready');
-		connection.trigger('requestTokens');
-		connection.trigger('requestEndpoints');
     })
 
-    // Once we know the window is loaded
-    $(window).ready( function() {
-        // Notify Journey Builder our window is loaded
-        connection.trigger('ready');
-
-    });
-
+   
 
 	// This listens for Journey Builder to send tokens
 	// Parameter is either the tokens data or an object with an
@@ -74,11 +66,12 @@ define( function( require ) {
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
     connection.on('populateFields', function(options) {
+    	console.log( 'OPTIONS: ', options );
     	if( options ) {
             //console.log( 'OPTIONS: ', options );
             // Persist
-            $('#url').val( options.url );
-            $('#body').val( options.body );
+            $('#call_url').val( options.url );
+            $('#call_body').val( options.body );
         }
 
     });
@@ -87,8 +80,9 @@ define( function( require ) {
 	// update the wizard.
     connection.trigger('updateStep', function(step){
     	console.log('here');
-    	var urlvalue = $('#url').val();
-    	var bodyvalue = $('#body').val();
+    	var urlvalue = $('#call_url').val();
+    	var bodyvalue = $('#call_body').val();
+    	
         if( !value ) {
             // Notify user they need to select a value 
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
@@ -96,8 +90,8 @@ define( function( require ) {
             // Successful change
             // When we're all done, define our payload
             data = {
-                url: $('#url').val(),
-                body: $('#body').val()
+                url: urlvalue,
+                body: bodyvalue
             };
 
             uiPayload = {
