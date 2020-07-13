@@ -1,14 +1,22 @@
 body {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 #container {
-    margin: 30px;
+  margin: 30px;
+  width: 610px;
 }
 
 input[type=text] {
-  width: 100%;
+  width:100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box; 
+}
+
+textarea {
+  width:100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -16,6 +24,7 @@ input[type=text] {
 
 label
 {
-	font-size: 15px;
-	line-height: 1.5;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1.5;
 }
