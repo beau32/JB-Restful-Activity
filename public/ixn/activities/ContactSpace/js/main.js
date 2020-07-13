@@ -7,13 +7,13 @@ requirejs.config({
         'vendor/jquery.min': {
             exports: '$'
         },
-		'HelloWorld': {
+		'ContactSpace': {
 			deps: ['vendor/jquery.min', 'vendor/postmonger']
 		}
     }
 });
 
-requirejs( ['vendor/jquery.min', 'HelloWorld'], function( $, HelloWorld ) {
+requirejs( ['vendor/jquery.min', 'ContactSpace'], function( $, ContactSpace ) {
 	//console.log( 'REQUIRE LOADED' );
 });
 
