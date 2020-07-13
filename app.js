@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(cookieSession({secret: "HelloWorld-CookieSecret"}));
 
 // Configure Express
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 //app.use(logger('dev'));
@@ -88,7 +88,7 @@ app.post('/fireEvent/:type', function( req, res ) {
 app.get('/clearList', function( req, res ) {
 	// The client makes this request to get the data
 	activity.logExecuteData = [];
-    res.status(200).send(err);
+    res.status(200).send('Cleared');
 	
 });
 

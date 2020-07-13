@@ -70,7 +70,7 @@ $(function() {
                 console.log( 'ERROR: ', error );
             },
             success: function( data, status, xhr ) {
-                if( !data.data ) {
+                if( !data.data && !data.data.length ) {
                     $results.append( '<li>There are no logs in the list</li>' );
                 } else {
                     var dataLength = data.data.length;

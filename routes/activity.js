@@ -6,6 +6,7 @@ var fs = require('fs');
 exports.logExecuteData = [];
 
 function logData( req ) {
+    
     exports.logExecuteData.push({
         body: req.body,
         headers: req.headers,
@@ -25,23 +26,9 @@ function logData( req ) {
         secure: req.secure,
         originalUrl: req.originalUrl
     });
-        console.log( "body: " + util.inspect( req.body ) );
-        console.log( "headers: " + req.headers );
-        console.log( "trailers: " + req.trailers );
-        console.log( "method: " + req.method );
-        console.log( "url: " + req.url );
-        console.log( "params: " + util.inspect( req.params ) );
-        console.log( "query: " + util.inspect( req.query ) );
-        console.log( "route: " + req.route );
-        console.log( "cookies: " + req.cookies );
-        console.log( "ip: " + req.ip );
-        console.log( "path: " + req.path );
-        console.log( "host: " + req.host );
-        console.log( "fresh: " + req.fresh );
-        console.log( "stale: " + req.stale );
-        console.log( "protocol: " + req.protocol );
-        console.log( "secure: " + req.secure );
-        console.log( "originalUrl: " + req.originalUrl );
+
+    console.log('Saved');
+       
 }
 
 /*
@@ -51,13 +38,8 @@ exports.edit = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
 
-    fs.readFile('helloworld.txt', 'utf8', function (err,data) {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(data);
-    });
-
+    logData( req );
+    res.send( 200, 'Save' );
 };
 
 /*
@@ -66,11 +48,6 @@ exports.edit = function( req, res ) {
 exports.save = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-    
-    fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
-        if (err) return console.log(err);
-        console.log('Hello World > helloworld.txt');
-    });
 
     logData( req );
     res.send( 200, 'Save' );
