@@ -1,5 +1,4 @@
-define([], function(){      
-    return {
+{
         "icon": "images/jb-icon.jpg",
         "iconSmall": "images/jb-icon.jpg", 
         "key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
@@ -69,5 +68,5 @@ define([], function(){
             "useJwt": false,
             "timeout": 3000
         }
-    };
-});
+}
+
