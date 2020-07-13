@@ -8,7 +8,7 @@ var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
-var trigger     = require('./routes/trigger');
+
 var connect = require('connect');
 var logger  = require('express-logger');
 var cookieParser = require('cookie-parser');
@@ -57,13 +57,8 @@ app.post('/ixn/activities/ContactSpace/validate/', activity.validate );
 app.post('/ixn/activities/ContactSpace/publish/', activity.publish );
 app.post('/ixn/activities/ContactSpace/execute/', activity.execute );
 
-// Custom Hello World Trigger Route
-app.post('/ixn/triggers/ContactSpace/', trigger.edit );
-
 // Abstract Event Handler
 app.post('/fireEvent/:type', function( req, res ) {
-
-    console.log(req.body);
 
     var call_body = null;
     var call_url = url.parse(req.body.call_url);
@@ -71,6 +66,7 @@ app.post('/fireEvent/:type', function( req, res ) {
     if(req.body.call_body)
         var call_body = req.body.call_body;
         
+    console.log(call_url.href);
 
     axios.post(call_url.href,call_body)
         .then((ares) => {
@@ -80,7 +76,7 @@ app.post('/fireEvent/:type', function( req, res ) {
 
         }).catch((err) => {
             console.error(err);
-            res.status(200).send(ares.data);
+            res.status(200).send(err.response.data);
     });
 
 });

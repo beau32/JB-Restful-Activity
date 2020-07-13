@@ -61,26 +61,22 @@ exports.execute = function( req, res ) {
     //console.log( req.body );
 
 
-    const https = require('https');
+    var call_body = null;
+    var call_url = url.parse(req.body.call_url);
 
-    https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
-      let data = '';
+    if(req.body.call_body)
+        var call_body = req.body.call_body;
+        
 
-      // A chunk of data has been recieved.
-      resp.on('data', (chunk) => {
-        data += chunk;
-      });
+    axios.post(call_url.href,call_body)
+        .then((ares) => {
+            console.log('Status:', ares.status);
+            console.log('Body: ', ares.data);
+            res.status(200).send(JSON.stringify(ares.data));
 
-      // The whole response has been received. Print out the result.
-      resp.on('end', () => {
-        console.log(JSON.parse(data).explanation);
-      });
-
-    }).on("error", (err) => {
-      console.log("Error: " + err.message);
-    }).on("complete", (err) => {
-        logData( req );
-        res.send( 200, 'Execute' );
+        }).catch((err) => {
+            console.error(err);
+            res.status(200).send(ares.data);
     });
     
 };

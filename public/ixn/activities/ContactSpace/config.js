@@ -21,8 +21,15 @@ define([], function(){
             "minWidth": 450,
             "steps": 1
         },
+        "userInterfaces": {
+            "configModal": {
+                "height": 200,
+                "width": 300,
+                "fullscreen": false
+            }
+        },
        "execute": {
-            "uri": "https://journeyext.herokuapp.com/ixn/activities/hello-world/execute/",
+            "uri": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute/",
 			"inArguments": [
                 {
                     "contactIdentifier": "{{Contact.Key}}"
@@ -39,7 +46,7 @@ define([], function(){
             "timeout": 3000
 		},
         "save": {
-            "uri": "https://journeyext.herokuapp.com/ixn/activities/hello-world/save/",
+            "uri": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save/",
 			"verb": "POST",
 			"body": "",
             "format": "json",
@@ -47,7 +54,7 @@ define([], function(){
             "timeout": 3000
         },
         "publish": {
-            "uri": "https://journeyext.herokuapp.com/ixn/activities/hello-world/publish/",
+            "uri": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish/",
             "verb": "POST",
 			"body": "",
             "format": "json",
@@ -55,7 +62,7 @@ define([], function(){
             "timeout": 3000
         },
         "validate": {
-            "uri": "https://journeyext.herokuapp.com/ixn/activities/hello-world/validate/",
+            "uri": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate/",
             "verb": "POST",
 			"body": "",
             "format": "json",
