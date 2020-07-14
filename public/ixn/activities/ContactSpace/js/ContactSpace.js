@@ -16,7 +16,7 @@ define( function( require ) {
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
     connection.on('populateFields', function(options) {
-    	console.log( 'OPTIONS: ', options.description );
+    	console.log( 'OPTIONS: ', options );
     	if( options ) {
             //console.log( 'OPTIONS: ', options );
             // Persist
