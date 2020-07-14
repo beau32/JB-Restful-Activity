@@ -3,6 +3,7 @@
         "iconSmall": "images/jb-icon.jpg", 
         "key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
         "partnerApiObjectTypeId": "IXN.CustomActivity.REST",
+        "workflowApiVersion": "1.1",
         "lang": {
             "en-US": {        
                 "name": "Contact Space",

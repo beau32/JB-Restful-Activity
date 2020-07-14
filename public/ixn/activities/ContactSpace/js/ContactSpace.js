@@ -75,8 +75,8 @@ define( function( require ) {
     	if( options ) {
             //console.log( 'OPTIONS: ', options );
             // Persist
-            $('#call_url').val( options.url );
-            $('#call_body').val( options.body );
+            $('#call_url').val( options.call_url );
+            $('#call_body').val( options.call_body );
         }
 
     });
