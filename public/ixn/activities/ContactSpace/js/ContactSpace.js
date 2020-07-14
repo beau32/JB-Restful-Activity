@@ -3,6 +3,7 @@ define( function( require ) {
 	var $ = require( 'vendor/jquery.min' );
 
     var connection = new Postmonger.Session();
+    var payload = {};
 	var tokens;
 	var endpoints;
 
@@ -10,7 +11,11 @@ define( function( require ) {
         connection.trigger('ready');
     })
 
-   
+    function initialize (data) {
+        if (data) {
+            payload = data;
+        }
+    }
 
 	// This listens for Journey Builder to send tokens
 	// Parameter is either the tokens data or an object with an
@@ -79,11 +84,12 @@ define( function( require ) {
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
     connection.trigger('updateStep', function(step){
-    	console.log('here');
+    	console.log(step);
+
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
-    	
-        if( !value ) {
+
+        if( !urlvalue || !bodyvalue ) {
             // Notify user they need to select a value 
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
         } else {
@@ -98,12 +104,8 @@ define( function( require ) {
                 options: data,
                 description: 'This is a configuration instance.'
             };
-
-            etPayload = {
-                filter: '<FilterDefinition Source=\'helloWorldNTO\'><ConditionSet Operator=\'AND\' ConditionSetName=\'Grouping\'><Condition ID=\'ece15cd0-8893-e311-b943-78e3b50b4f00\' isParam=\'false\' Operator=\'Equal\' conditionValid=\'1\'><Value><![CDATA[' + data.originEventStart + ']]></Value></Condition></ConditionSet></FilterDefinition>'
-            };
-
-            connection.trigger( 'save', uiPayload, etPayload );
+            connection.trigger('updateActivity', uiPayload);
+            //connection.trigger( 'save', uiPayload );
         }
     });
 
