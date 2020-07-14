@@ -16,7 +16,7 @@ define( function( require ) {
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
     connection.on('populateFields', function(options) {
-    	console.log( 'OPTIONS: ', options );
+    	console.log( 'OPTIONS: ', options.description );
     	if( options ) {
             //console.log( 'OPTIONS: ', options );
             // Persist
@@ -35,6 +35,7 @@ define( function( require ) {
     	var bodyvalue = $('#call_body').val();
 
         if( !urlvalue || !bodyvalue ) {
+        	console.log('empty value');
             // Notify user they need to select a value 
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
         } else {
