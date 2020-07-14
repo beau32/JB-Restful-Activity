@@ -12,7 +12,7 @@
             "description": "Activity simply posts the data to API endpoint."
         }
     },
-    "category": "third party app",
+    "category": "Custom",
     "version": "1.0",
     "edit": {
         "uri": "index.html",

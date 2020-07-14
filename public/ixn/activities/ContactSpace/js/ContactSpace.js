@@ -28,7 +28,7 @@ define( function( require ) {
 
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
-    connection.trigger('updateStep', function(step){
+    connection.trigger('updateSteps', function(step){
     	console.log(step);
 
     	var urlvalue = $('#call_url').val();
