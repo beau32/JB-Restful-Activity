@@ -1,0 +1,68 @@
+{
+    "workflowApiVersion": "1.0",
+    "metaData": {
+        "icon": "images/sms.png",
+        "iconSmall": "images/smsSmall.png",
+        "category": "message",
+        "version": "2.0"
+    },
+
+    "type": "MOBILE",
+    "lang": {
+        "en-US": {
+            "name": "Mobile (Workflow API)",
+            "description": "A mobile activity that does things and stuff with your phone."
+        }
+
+    },
+
+    "arguments": {
+        "execute": {
+            "inArguments": {
+                "something": "coming from config.json"
+            },
+
+            "outArguments": [], 
+            "uri": "URI/for/your/activity/execute",
+            "verb": "POST",
+            "body": "", 
+            "header": "", 
+            "format": "json",
+            "useJwt": false,
+            "timeout": 10000
+        }
+
+    },
+
+    "configurationArguments": {
+        "applicationExtensionKey": "mobile-workflow",
+        "save": {
+            "uri": "URI/for/your/activity/save",
+            "body": "", 
+            "verb": "POST",
+            "useJwt": false
+        },
+
+        "publish": {
+            "uri": "URI/for/your/activity/publish",
+            "verb": "POST",
+            "body": "", 
+            "useJwt": false
+        },
+
+        "validate": {
+            "uri": "URI/for/your/activity/validate",
+            "verb": "POST",
+            "body": "", 
+            "useJwt": false
+        }
+
+    },
+
+    "edit": {
+        "uri": "", 
+        "height": 200,
+        "width": 300 
+    }
+
+}
