@@ -1,68 +1,62 @@
 {
-    "workflowApiVersion": "1.0",
     "metaData": {
-        "icon": "images/sms.png",
-        "iconSmall": "images/smsSmall.png",
-        "category": "message",
-        "version": "2.0"
+        "icon": "images/jb-icon.jpg",
+        "iconSmall": "images/jb-icon.jpg"
     },
-
-    "type": "MOBILE",
+    "key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
+    "type": "myActivityType",
+    "workflowApiVersion": "1.1",
     "lang": {
-        "en-US": {
-            "name": "Mobile (Workflow API)",
-            "description": "A mobile activity that does things and stuff with your phone."
+        "en-US": {        
+            "name": "ContactSpace",
+            "description": "Activity simply posts the data to API endpoint."
         }
-
     },
-
+    "category": "third party app",
+    "version": "1.0",
+    "edit": {
+        "uri": "index.html",
+        "maxHeight": 500,
+        "maxWidth": 750,
+        "minHeight": 300,
+        "minWidth": 450,
+        "steps": 1
+    },
+    "userInterfaces": {
+        "configModal": {
+            "height": 200,
+            "width": 300,
+            "fullscreen": false
+        }
+    },
     "arguments": {
         "execute": {
-            "inArguments": {
-                "something": "coming from config.json"
+            "inArguments": [{
+                "contactIdentifier": "{{Contact.Key}}"
             },
-
-            "outArguments": [], 
-            "uri": "URI/for/your/activity/execute",
-            "verb": "POST",
-            "body": "", 
-            "header": "", 
-            "format": "json",
-            "useJwt": false,
-            "timeout": 10000
+            {
+                "emailAddress": "{{InteractionDefaults.Email}}"
+            }],
+            "outArguments": [],
+            "timeout": 100000,
+            "retryCount": 1,
+            "retryDelay": 10000,
+            "concurrentRequests" : 5,
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute/"
         }
-
     },
-
     "configurationArguments": {
-        "applicationExtensionKey": "mobile-workflow",
         "save": {
-            "uri": "URI/for/your/activity/save",
-            "body": "", 
-            "verb": "POST",
-            "useJwt": false
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save/"
         },
-
         "publish": {
-            "uri": "URI/for/your/activity/publish",
-            "verb": "POST",
-            "body": "", 
-            "useJwt": false
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish/"
         },
-
         "validate": {
-            "uri": "URI/for/your/activity/validate",
-            "verb": "POST",
-            "body": "", 
-            "useJwt": false
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate/"
+        },
+        "stop": {
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/stop/"
         }
-
-    },
-
-    "edit": {
-        "uri": "", 
-        "height": 200,
-        "width": 300 
     }
-
 }
