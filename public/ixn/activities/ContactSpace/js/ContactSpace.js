@@ -15,8 +15,14 @@ define( function( require ) {
 	// sends the "ready" method. JB parses the serialized object which
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
+    connection.on('initActivity', function(payload) { 
+    	console.log('initActivity');
+    	console.log(payload);
+    });
+
     connection.on('populateFields', function(options) {
-    	console.log( 'OPTIONS: ', options );
+    	console.log('populateFields');
+
     	if( options ) {
             //console.log( 'OPTIONS: ', options );
             // Persist
@@ -29,8 +35,8 @@ define( function( require ) {
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
     connection.trigger('updateSteps', function(step){
-    	console.log(step);
-
+    	
+    	console.log('updateSteps');
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
 
