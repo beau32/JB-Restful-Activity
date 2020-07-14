@@ -39,6 +39,7 @@ define( function( require ) {
             // Notify user they need to select a value 
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
         } else {
+
             // Successful change
             // When we're all done, define our payload
             data = {
@@ -50,6 +51,7 @@ define( function( require ) {
                 options: data,
                 description: 'This is a configuration instance.'
             };
+            console.log('uiPayload: ', uiPayload);
             connection.trigger('save', uiPayload);
             //connection.trigger( 'save', uiPayload );
         }
