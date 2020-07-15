@@ -47,7 +47,7 @@ define([
 
             // Successful change
             // When we're all done, define our payload
-            data = {
+            var data = {
                 url: urlvalue,
                 body: bodyvalue
             };
