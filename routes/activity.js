@@ -27,7 +27,7 @@ function logData( req ) {
         originalUrl: req.originalUrl
     });
 
-    console.log('Saved');
+    console.log('Log Saved');
        
 }
 
@@ -50,7 +50,7 @@ exports.save = function( req, res ) {
     //console.log( req.body );
 
     logData( req );
-    res.status(200).send('save');
+    res.status(200).send('Save');
 };
 
 /*

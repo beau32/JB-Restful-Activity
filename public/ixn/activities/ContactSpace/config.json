@@ -33,21 +33,9 @@
         "execute": {
             "inArguments": [{
                 "contactIdentifier": "{{Contact.Key}}"
-            },
-            {
-                "emailAddress": "{{InteractionDefaults.Email}}"
-            },
-            {
-                "phoneNumber": "{{Contact.Default.PhoneNumber}}"
             }
             ],
-            "outArguments": [{
-                "foundSignupDate": {
-                    "dataType": "Date",
-                    "direction": "out",
-                    "access": "visible"
-                }
-            }],
+            "outArguments": [],
             "timeout": 100000,
             "retryCount": 1,
             "retryDelay": 10000,
