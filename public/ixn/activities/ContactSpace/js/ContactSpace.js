@@ -68,7 +68,7 @@ define([
         } else {
 
         	payload['arguments'].execute.inArguments = payload['arguments'].execute.inArguments.filter(function( obj ) {
-			    return obj.hasOwnProperty('call_url') && obj.hasOwnProperty('call_body');
+			    return !obj.hasOwnProperty('call_url') && !obj.hasOwnProperty('call_body');
 			});
 
 
