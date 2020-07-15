@@ -16,7 +16,7 @@ define( function( require ) {
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
     connection.on('initActivity', function(data) { 
-    	console.log('initActivity');
+    	console.log('initActivitynew');
 
     	if (data) {
             payload = data;
