@@ -64,9 +64,6 @@
         },
         "validate": {
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate/"
-        },
-        "stop": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/stop/"
         }
     },
     "schema": {
