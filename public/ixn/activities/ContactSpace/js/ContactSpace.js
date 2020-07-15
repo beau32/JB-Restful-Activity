@@ -11,6 +11,8 @@ define([
     var payload = {};
 	var tokens;
 	var endpoints;
+	var data = {};
+	var uiPayload ={};
 
     $(window).ready(function() {
         connection.trigger('ready');
@@ -47,7 +49,7 @@ define([
 
             // Successful change
             // When we're all done, define our payload
-            var data = {
+            data = {
                 url: urlvalue,
                 body: bodyvalue
             };
