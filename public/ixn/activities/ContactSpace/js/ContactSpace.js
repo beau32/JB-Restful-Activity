@@ -11,7 +11,7 @@ define([
     var payload = {};
 	var tokens;
 	var endpoints;
-	var data = {};
+	var vdata = {};
 	var uiPayload ={};
 
     $(window).ready(function() {
@@ -25,6 +25,7 @@ define([
 	// "config.js.save.uri" as a POST
     connection.on('initActivity', function(data) { 
     	console.log('initActivity');
+    	console.log(data);
 
     	if(data.length>0){
     		$('#call_url').val( data.call_url );
@@ -45,7 +46,7 @@ define([
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
 
-        if( !urlvalue || !bodyvalue ) {
+        if( !urlvalue ) {
         	console.log('empty value');
             // Notify user they need to select a value 
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
@@ -54,18 +55,19 @@ define([
 
             // Successful change
             // When we're all done, define our payload
-            data = {
+            vdata = {
                 url: urlvalue,
                 body: bodyvalue
             };
 
-            uiPayload = {
-                options: data,
-                description: 'This is a configuration instance.'
-            };
+           	payload.name = name;
+	        payload['arguments'].execute.inArguments = [{ "call_url": urlvalue }];
+	        payload['arguments'].execute.inArguments = [{ "call_body": bodyvalue }];
+	        payload['metaData'].isConfigured = true;
+	        connection.trigger('updateActivity', payload);
 
-            console.log('uiPayload: ', uiPayload);
-            connection.trigger('updateActivity', uiPayload);
+            
+            connection.trigger('nextStep');
             
         }
 
