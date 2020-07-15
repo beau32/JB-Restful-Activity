@@ -15,8 +15,13 @@ define( function( require ) {
 	// sends the "ready" method. JB parses the serialized object which
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
-    connection.on('initActivity', function(payload) { 
+    connection.on('initActivity', function(data) { 
     	console.log('initActivity');
+
+    	if (data) {
+            payload = data;
+        }
+
     	console.log(payload);
     });
 
@@ -34,7 +39,7 @@ define( function( require ) {
 
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
-    connection.trigger('updateSteps', function(step){
+    connection.trigger('clickedNext', function(step){
     	
     	console.log('updateSteps');
     	var urlvalue = $('#call_url').val();
@@ -58,12 +63,27 @@ define( function( require ) {
                 description: 'This is a configuration instance.'
             };
             console.log('uiPayload: ', uiPayload);
-            connection.trigger('save', uiPayload);
+            connection.trigger('updateActivity', uiPayload);
             //connection.trigger( 'save', uiPayload );
         }
     });
 
-	// When everything has been configured for this activity, trigger
-	// the save:
-	// connection.trigger('save', 
+	function save() {
+        var call_body = $('#call_body').val();
+        var call_url = $('#call_url').val();
+
+        var value = getMessage();
+
+        // 'payload' is initialized on 'initActivity' above.
+        // Journey Builder sends an initial payload with defaults
+        // set by this activity's config.json file.  Any property
+        // may be overridden as desired.
+        payload.name = name;
+
+        payload['arguments'].execute.inArguments = [{ "message": value }];
+
+        payload['metaData'].isConfigured = true;
+
+        connection.trigger('updateActivity', payload);
+    }
 });
