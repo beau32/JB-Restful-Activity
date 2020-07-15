@@ -16,15 +16,19 @@ define( function( require ) {
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
     connection.on('initActivity', function(data) { 
-    	console.log('initActivitynew');
+    	console.log('initActivity');
 
     	if (data) {
             payload = data;
         }
 
-    	console.log(payload);
+    	console.log("payload",payload);
     });
-
+    connection.on('clickedNext', function(options) {
+    	console.log('clickedNext');
+    });
+    connection.trigger('updateButton', { button: 'next', enabled: false });
+    
     connection.on('populateFields', function(options) {
     	console.log('populateFields');
 
@@ -39,7 +43,7 @@ define( function( require ) {
 
 	// Trigger this method when updating a step. This allows JB to
 	// update the wizard.
-    connection.trigger('clickedNext', function(step){
+    connection.trigger('updateStep', function(step){
     	
     	console.log('updateSteps');
     	var urlvalue = $('#call_url').val();
