@@ -26,6 +26,11 @@ define([
     connection.on('initActivity', function(data) { 
     	console.log('initActivity');
 
+    	if(data.length>0){
+    		$('#call_url').val( data.call_url );
+        	$('#call_body').val( data.call_body );
+    	}
+
     	if (data) {
             payload = data;
         }
