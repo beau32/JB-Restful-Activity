@@ -84,7 +84,9 @@ define([
             };
 
            	payload.name = 'ContactSpace';
-	        payload['arguments'].execute.inArguments = [{ "call_url": urlvalue },{ "call_body": bodyvalue }];
+	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue })
+	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  })
+	        
 	        payload['metaData'].isConfigured = true;
 	        connection.trigger('updateActivity', payload);
 
