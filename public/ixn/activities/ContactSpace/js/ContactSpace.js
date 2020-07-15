@@ -35,7 +35,6 @@ define([
             payload = data;
         }
 
-    	console.log("payload",payload);
     });
 
     connection.on('clickedNext', function(options) {
@@ -50,6 +49,7 @@ define([
         	console.log('empty value');
             // Notify user they need to select a value 
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
+            connection.trigger('ready');
         } else {
 
             // Successful change
@@ -63,6 +63,7 @@ define([
                 options: data,
                 description: 'This is a configuration instance.'
             };
+
             console.log('uiPayload: ', uiPayload);
             connection.trigger('updateActivity', uiPayload);
             
