@@ -25,7 +25,11 @@ define([
     connection.on('initActivity', function(data) { 
     	console.log('initActivity');
     	console.log(data);
-    	console.log(payload);
+
+    	if (data) {
+            payload = data;
+        }
+        
     	var hasInArguments = Boolean(
             payload['arguments'] &&
             payload['arguments'].execute &&
@@ -44,9 +48,7 @@ define([
         $('#call_body').val( values.vcall_body );
     	
 
-    	if (data) {
-            payload = data;
-        }
+    	
 
     });
 
