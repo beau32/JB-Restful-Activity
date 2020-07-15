@@ -40,7 +40,7 @@ define([
 
         if (hasInArguments){
         	values = payload['arguments'].execute.inArguments.filter(function( obj ) {
-				return obj.call_url.length>0 || obj.call_body.length>0;
+				return obj.hasOwnProperty('call_url')>0 || obj.hasOwnProperty('call_body')>0;
 			});
         }
         console.log(values);
