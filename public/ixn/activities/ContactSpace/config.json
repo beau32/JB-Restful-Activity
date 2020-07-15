@@ -46,7 +46,13 @@
             {
                 "call_body": ""
             }],
-            "outArguments": [],
+            "outArguments": [{
+                "foundSignupDate": {
+                    "dataType": "Date",
+                    "direction": "out",
+                    "access": "visible"
+                }
+            }],
             "timeout": 100000,
             "retryCount": 1,
             "retryDelay": 10000,
@@ -66,6 +72,51 @@
         },
         "stop": {
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/stop/"
+        }
+    },
+    "schema": {
+        "arguments": {
+            "execute": {
+                "inArguments": [
+                    {
+                        "phoneNumber": {
+                            "dataType": "Phone",
+                            "isNullable": false,
+                            "direction": "in"   
+                        }
+                    },
+                    {
+                        "emailAddress": {
+                            "dataType": "Email",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
+                    },
+                    {
+                        "call_url": {
+                            "dataType": "Text",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
+                    },
+                    {
+                        "call_body": {
+                            "dataType": "Text",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
+                    }
+                ],
+                "outArguments": [
+                    {
+                        "foundSignupDate": {
+                            "dataType": "Date",
+                            "direction": "out",
+                            "access": "visible"
+                        }
+                    }
+                ]
+            }
         }
     }
 }

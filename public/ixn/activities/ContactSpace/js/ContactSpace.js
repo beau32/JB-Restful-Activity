@@ -61,8 +61,7 @@ define([
             };
 
            	payload.name = name;
-	        payload['arguments'].execute.inArguments = [{ "call_url": urlvalue }];
-	        payload['arguments'].execute.inArguments = [{ "call_body": bodyvalue }];
+	        payload['arguments'].execute.inArguments = [{ "call_url": urlvalue },{ "call_body": bodyvalue }];
 	        payload['metaData'].isConfigured = true;
 	        connection.trigger('updateActivity', payload);
 
