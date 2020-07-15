@@ -27,9 +27,9 @@ define([
     	console.log('initActivity');
     	console.log(data);
 
-    	if(data.length>0){
-    		$('#call_url').val( data.call_url );
-        	$('#call_body').val( data.call_body );
+    	if(data['arguments'].execute.inArguments.length>0){
+    		$('#call_url').val( data.['arguments'].execute.inArguments.call_url );
+        	$('#call_body').val( data.['arguments'].execute.inArguments.call_body );
     	}
 
     	if (data) {
@@ -60,7 +60,7 @@ define([
                 body: bodyvalue
             };
 
-           	payload.name = name;
+           	payload.name = 'ContactSpace';
 	        payload['arguments'].execute.inArguments = [{ "call_url": urlvalue },{ "call_body": bodyvalue }];
 	        payload['metaData'].isConfigured = true;
 	        connection.trigger('updateActivity', payload);
@@ -87,24 +87,4 @@ define([
 
     });
 
-	
-
-	function save() {
-        var call_body = $('#call_body').val();
-        var call_url = $('#call_url').val();
-
-        var value = getMessage();
-
-        // 'payload' is initialized on 'initActivity' above.
-        // Journey Builder sends an initial payload with defaults
-        // set by this activity's config.json file.  Any property
-        // may be overridden as desired.
-        payload.name = name;
-
-        payload['arguments'].execute.inArguments = [{ "message": value }];
-
-        payload['metaData'].isConfigured = true;
-
-        connection.trigger('updateActivity', payload);
-    }
 });
