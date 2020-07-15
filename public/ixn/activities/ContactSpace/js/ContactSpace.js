@@ -29,16 +29,17 @@ define([
     	if (data) {
             payload = data;
         }
-        
+
     	var hasInArguments = Boolean(
             payload['arguments'] &&
             payload['arguments'].execute &&
             payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0
         );
+    	var values;
 
         if (hasInArguments){
-        	var values = payload['arguments'].execute.inArguments.filter(function( obj ) {
+        	values = payload['arguments'].execute.inArguments.filter(function( obj ) {
 				return obj.field == 'call_url' || obj.field == 'call_body';
 			});
         }
@@ -46,8 +47,6 @@ define([
 
     	$('#call_url').val( values.call_url );
         $('#call_body').val( values.vcall_body );
-    	
-
     	
 
     });
@@ -67,9 +66,10 @@ define([
             connection.trigger('ready');
         } else {
 
-        	myArray = payload['arguments'].execute.inArguments.filter(function( obj ) {
+        	payload['arguments'].execute.inArguments = payload['arguments'].execute.inArguments.filter(function( obj ) {
 			    return obj.field !== 'call_url' || obj.field !== 'call_body';
 			});
+
 
            	payload.name = 'ContactSpace';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue })
