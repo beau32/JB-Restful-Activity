@@ -30,30 +30,12 @@ define([
 
     	console.log("payload",payload);
     });
-    
+
     connection.on('clickedNext', function(options) {
+
+
     	console.log('clickedNext');
-    });
 
-    //connection.trigger('updateButton', { button: 'next', enabled: false });
-
-    connection.on('populateFields', function(options) {
-    	console.log('populateFields');
-
-    	if( options ) {
-            //console.log( 'OPTIONS: ', options );
-            // Persist
-            $('#call_url').val( options.call_url );
-            $('#call_body').val( options.call_body );
-        }
-
-    });
-
-	// Trigger this method when updating a step. This allows JB to
-	// update the wizard.
-    connection.trigger('updateStep', function(step){
-    	
-    	console.log('updateSteps');
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
 
@@ -76,9 +58,27 @@ define([
             };
             console.log('uiPayload: ', uiPayload);
             connection.trigger('updateActivity', uiPayload);
-            //connection.trigger( 'save', uiPayload );
+            
         }
+
     });
+
+
+    //connection.trigger('updateButton', { button: 'next', enabled: false });
+
+    connection.on('populateFields', function(options) {
+    	console.log('populateFields');
+
+    	if( options ) {
+            //console.log( 'OPTIONS: ', options );
+            // Persist
+            $('#call_url').val( options.call_url );
+            $('#call_body').val( options.call_body );
+        }
+
+    });
+
+	
 
 	function save() {
         var call_body = $('#call_body').val();
