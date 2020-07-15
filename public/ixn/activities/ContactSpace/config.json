@@ -39,13 +39,8 @@
             },
             {
                 "phoneNumber": "{{Contact.Default.PhoneNumber}}"
-            },
-            {
-                "call_url": ""
-            },
-            {
-                "call_body": ""
-            }],
+            }
+            ],
             "outArguments": [{
                 "foundSignupDate": {
                     "dataType": "Date",
@@ -93,14 +88,7 @@
                         }
                     },
                     {
-                        "call_url": {
-                            "dataType": "Text",
-                            "isNullable": false,
-                            "direction": "in"
-                        }
-                    },
-                    {
-                        "call_body": {
+                        "contactIdentifier": {
                             "dataType": "Text",
                             "isNullable": false,
                             "direction": "in"
