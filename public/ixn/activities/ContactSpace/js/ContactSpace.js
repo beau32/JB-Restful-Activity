@@ -28,8 +28,8 @@ define([
     	console.log(data);
 
     	if(data['arguments'].execute.inArguments.length>0){
-    		$('#call_url').val( data.['arguments'].execute.inArguments.call_url );
-        	$('#call_body').val( data.['arguments'].execute.inArguments.call_body );
+    		$('#call_url').val( data['arguments'].execute.inArguments.call_url );
+        	$('#call_body').val( data['arguments'].execute.inArguments.call_body );
     	}
 
     	if (data) {
