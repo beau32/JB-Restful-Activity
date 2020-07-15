@@ -26,9 +26,6 @@ define([
     	console.log('initActivity');
     	console.log(data);
 
-    	var vcall_url;
-    	var vcall_body;
-
     	var hasInArguments = Boolean(
             payload['arguments'] &&
             payload['arguments'].execute &&
@@ -36,23 +33,14 @@ define([
             payload['arguments'].execute.inArguments.length > 0
         );
 
-        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+        if (hasInArguments){
+        	var values = payload['arguments'].execute.inArguments.filter(function( obj ) {
+				return obj.field == 'call_url' || obj.field == 'call_body';
+			});
+        }
 
-        $.each(inArguments, function(index, inArgument) {
-            $.each(inArgument, function(key, val) {
-            	console.log(key,val);
-                if (key == 'call_url') {
-                    vcall_url = val;
-                    
-                }
-                if(key == 'call_body'){
-                	vcall_body = val;
-                }
-            });
-        });
-
-    	$('#call_url').val( vcall_url );
-        $('#call_body').val( vcall_body );
+    	$('#call_url').val( values.call_url );
+        $('#call_body').val( values.vcall_body );
     	
 
     	if (data) {
@@ -75,6 +63,10 @@ define([
             $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
             connection.trigger('ready');
         } else {
+
+        	myArray = payload['arguments'].execute.inArguments.filter(function( obj ) {
+			    return obj.field !== 'call_url' || obj.field !== 'call_body';
+			});
 
            	payload.name = 'ContactSpace';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue })
