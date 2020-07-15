@@ -40,11 +40,12 @@ define([
 
         $.each(inArguments, function(index, inArgument) {
             $.each(inArgument, function(key, val) {
-                if (key === 'call_url') {
+            	console.log(key,val);
+                if (key == 'call_url') {
                     vcall_url = val;
                     
                 }
-                if(key === 'call_body'){
+                if(key == 'call_body'){
                 	vcall_body = val;
                 }
             });
