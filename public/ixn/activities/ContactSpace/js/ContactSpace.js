@@ -40,7 +40,7 @@ define([
 
         if (hasInArguments){
         	values = payload['arguments'].execute.inArguments.filter(function( obj ) {
-				return obj.hasOwnProperty('call_url')>0 || obj.hasOwnProperty('call_body')>0;
+				return obj.hasOwnProperty('call_url') || obj.hasOwnProperty('call_body');
 			});
         }
 
@@ -68,13 +68,13 @@ define([
         } else {
 
         	payload['arguments'].execute.inArguments = payload['arguments'].execute.inArguments.filter(function( obj ) {
-			    return obj.field !== 'call_url' || obj.field !== 'call_body';
+			    return obj.hasOwnProperty('call_url') && obj.hasOwnProperty('call_body');
 			});
 
 
-           	payload.name = 'ContactSpace';
-	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue })
-	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  })
+           	if (!payload.name) payload.name = 'ContactSpace';
+	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue });
+	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  });
 	        
 	        payload['metaData'].isConfigured = true;
 	        connection.trigger('updateActivity', payload);

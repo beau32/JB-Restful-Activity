@@ -39,7 +39,7 @@ exports.edit = function( req, res ) {
     //console.log( req.body );
 
     logData( req );
-    res.send( 200, 'Save' );
+    res.status(200).send('edit');
 };
 
 /*
@@ -50,7 +50,7 @@ exports.save = function( req, res ) {
     //console.log( req.body );
 
     logData( req );
-    res.send( 200, 'Save' );
+    res.status(200).send('save');
 };
 
 /*
