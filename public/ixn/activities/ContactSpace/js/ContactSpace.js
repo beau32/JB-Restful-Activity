@@ -43,10 +43,11 @@ define([
 				return obj.hasOwnProperty('call_url')>0 || obj.hasOwnProperty('call_body')>0;
 			});
         }
+
         console.log(values);
 
-    	$('#call_url').val( values.call_url );
-        $('#call_body').val( values.vcall_body );
+    	$('#call_url').val( values[0].call_url );
+        $('#call_body').val( values[1].vcall_body );
     	
 
     });
