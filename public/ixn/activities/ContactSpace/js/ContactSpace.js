@@ -27,9 +27,32 @@ define([
     	console.log('initActivity');
     	console.log(data);
 
+    	var vcall_url;
+    	var vcall_body;
+
+    	var hasInArguments = Boolean(
+            payload['arguments'] &&
+            payload['arguments'].execute &&
+            payload['arguments'].execute.inArguments &&
+            payload['arguments'].execute.inArguments.length > 0
+        );
+
+        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+        $.each(inArguments, function(index, inArgument) {
+            $.each(inArgument, function(key, val) {
+                if (key === 'call_url') {
+                    vcall_url = val;
+                    
+                }else if(key === 'call_body'){
+                	vcall_body = val;
+                }
+            });
+        });
+
     	if(data['arguments'].execute.inArguments.length>0){
-    		$('#call_url').val( data['arguments'].execute.inArguments.call_url );
-        	$('#call_body').val( data['arguments'].execute.inArguments.call_body );
+    		$('#call_url').val( vcall_url );
+        	$('#call_body').val( vcall_body );
     	}
 
     	if (data) {
