@@ -1,4 +1,9 @@
-define( function( require ) {
+define([
+    'postmonger'
+], function(
+    Postmonger
+) {
+    'use strict';
 	var Postmonger = require( 'postmonger' );
 	var $ = require( 'vendor/jquery.min' );
 
@@ -9,6 +14,7 @@ define( function( require ) {
 
     $(window).ready(function() {
         connection.trigger('ready');
+        console.log('ready');
     })
 
 	// Journey Builder broadcasts this event to us after this module
@@ -24,11 +30,13 @@ define( function( require ) {
 
     	console.log("payload",payload);
     });
+    
     connection.on('clickedNext', function(options) {
     	console.log('clickedNext');
     });
-    connection.trigger('updateButton', { button: 'next', enabled: false });
-    
+
+    //connection.trigger('updateButton', { button: 'next', enabled: false });
+
     connection.on('populateFields', function(options) {
     	console.log('populateFields');
 
