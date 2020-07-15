@@ -12,7 +12,6 @@ define([
 	var tokens;
 	var endpoints;
 	var vdata = {};
-	var uiPayload ={};
 
     $(window).ready(function() {
         connection.trigger('ready');
@@ -44,16 +43,16 @@ define([
                 if (key === 'call_url') {
                     vcall_url = val;
                     
-                }else if(key === 'call_body'){
+                }
+                if(key === 'call_body'){
                 	vcall_body = val;
                 }
             });
         });
 
-    	if(data['arguments'].execute.inArguments.length>0){
-    		$('#call_url').val( vcall_url );
-        	$('#call_body').val( vcall_body );
-    	}
+    	$('#call_url').val( vcall_url );
+        $('#call_body').val( vcall_body );
+    	
 
     	if (data) {
             payload = data;
@@ -76,13 +75,6 @@ define([
             connection.trigger('ready');
         } else {
 
-            // Successful change
-            // When we're all done, define our payload
-            vdata = {
-                url: urlvalue,
-                body: bodyvalue
-            };
-
            	payload.name = 'ContactSpace';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue })
 	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  })
@@ -100,16 +92,5 @@ define([
 
     //connection.trigger('updateButton', { button: 'next', enabled: false });
 
-    connection.on('populateFields', function(options) {
-    	console.log('populateFields');
-
-    	if( options ) {
-            //console.log( 'OPTIONS: ', options );
-            // Persist
-            $('#call_url').val( options.call_url );
-            $('#call_body').val( options.call_body );
-        }
-
-    });
 
 });
