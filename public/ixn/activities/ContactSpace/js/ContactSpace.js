@@ -38,7 +38,8 @@ define([
 				return obj.field == 'call_url' || obj.field == 'call_body';
 			});
         }
-
+        console.log(values);
+        
     	$('#call_url').val( values.call_url );
         $('#call_body').val( values.vcall_body );
     	
