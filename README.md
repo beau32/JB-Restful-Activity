@@ -1,5 +1,5 @@
 # Journey Builder
-## Custom Interaction - Hello World
+## Custom Interaction - This is app allows journey builder to integrate third party API in real time
 
 **NOTE:** You won't be able to run this locally. It is intended to be ran on a publicly available web server/cloud only.
 
@@ -8,7 +8,7 @@
 ### Pre-Requisites
 
 * Node.js (to test locally)
-* Must have an ExactTarget Marketing Cloud account
+* Must have an Salesforce Marketing Cloud account
 * Journey Builder and all associated applications  must be provisioned into this account
 * A publicly accessible web server or cloud (I'll be using [Heroku](https://heroku.com) with a single dyno and you can too, just sign up for a free account) You'll need the Heroku toolbelt if you're using that PaaS for this app.
 * Web Server or Cloud MUST support SSL (which is why we recommend Heroku...it just works for single dyno apps)
@@ -123,7 +123,7 @@
 4. Save
 
 #### Updating the code to reflect our new App Extensions
-1. Open /public/ixn/activities/hello-world/config.js
+1. Open /public/ixn/activities/hello-world/config.json
 
 2. Copy the "Key" property from your App Extension Custom Activity and paste it into config.js.key value
 
