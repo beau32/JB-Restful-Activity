@@ -45,8 +45,8 @@ define([
         }
 
         console.log(values);
-        
-        if (values.length>0){
+
+        if (values && values.length>0){
         	$('#call_url').val( values[0].call_url );
         	$('#call_body').val( values[1].call_body );
         }
