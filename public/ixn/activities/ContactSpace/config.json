@@ -75,20 +75,6 @@
                             "isNullable": false,
                             "direction": "in"
                         }
-                    },
-                    {
-                        "call_url": {
-                            "dataType": "Text",
-                            "isNullable": false,
-                            "direction": "in"
-                        }
-                    },
-                    {
-                        "call_body": {
-                            "dataType": "Text",
-                            "isNullable": true,
-                            "direction": "in"
-                        }
                     }
                 ],
                 "outArguments": [
