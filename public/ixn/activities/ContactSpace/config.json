@@ -54,7 +54,29 @@
     "schema": {
         "arguments": {
             "execute": {
-                "inArguments": [],
+                "inArguments": [
+                    {
+                        "phoneNumber": {
+                            "dataType": "Phone",
+                            "isNullable": false,
+                            "direction": "in"   
+                        }
+                    },
+                    {
+                        "emailAddress": {
+                            "dataType": "Email",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
+                    },
+                    {
+                        "contactIdentifier": {
+                            "dataType": "Text",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
+                    }
+                ],
                 "outArguments": []
             }
         }
