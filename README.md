@@ -1,5 +1,5 @@
 # Journey Builder
-## Custom Interaction - Hello World
+## Custom Interaction - This is app allows journey builder to integrate with third party API in real time
 
 **NOTE:** You won't be able to run this locally. It is intended to be ran on a publicly available web server/cloud only.
 
@@ -8,7 +8,7 @@
 ### Pre-Requisites
 
 * Node.js (to test locally)
-* Must have an ExactTarget Marketing Cloud account
+* Must have an Salesforce Marketing Cloud account
 * Journey Builder and all associated applications  must be provisioned into this account
 * A publicly accessible web server or cloud (I'll be using [Heroku](https://heroku.com) with a single dyno and you can too, just sign up for a free account) You'll need the Heroku toolbelt if you're using that PaaS for this app.
 * Web Server or Cloud MUST support SSL (which is why we recommend Heroku...it just works for single dyno apps)
@@ -20,7 +20,6 @@
 #### Creating our base app in Code@
 
 1. clone this repository locally
-    git clone git@github.com:ExactTarget/journey-builder-custom-hello-world.git
 
 2. Login to your Code@ account [https://code.exacttarget.com/user/login](https://code.exacttarget.com/user/login)
 
@@ -51,24 +50,6 @@
 
 9. If everything is successful, you should see a message saying so. Stay on this screen and let's copy the information into our app's code we'll need...
 
-#### Copying App Center Data
-
-1. Open /app.js
-
-2. Copy the values from the App Center Hello World Summary Screen into this section of code in app.js
-
-<code>
-<pre>
-    var APIKeys = {
-        appId           : '__insert_your_app_id__',
-        clientId        : '__insert_your_app_client_id__',
-        clientSecret    : '__insert_your_app_client_secret__',
-        appSignature    : '__insert_your_app_signature__',
-        authUrl         : 'https://auth.exacttargetapis.com/v1/requestToken?legacy=1'
-    };
-</pre>
-</code>
-
 #### Web Server
 
 1. At this point we're going to need the endpoint for our app and subsequently each app extension
@@ -93,17 +74,6 @@
 
 4. Save
 
-#### Updating the code to reflect our new Custom Trigger
-1. Open /public/ixn/triggers/hello-world/config.json
-
-2. Copy the "Key" property from your App Extension Custom Trigger and paste it into config.json.key value
-
-3. Open /app.js
-
-4. In the fireEvent handler, insert the name of your Trigger's key in place of the value for: triggerIdFromAppExtensionInAppCenter 
-
-5. **NOTE: Step 5 IS NOT required, except in cases where the Custom Trigger DE has been associated to the Contact Model and the "Advanced" development flow of implementing Contact Filter Criteria is needed** There is a filter definition XML which requires setup and custom values in [this custom trigger JS file](https://github.com/ExactTarget/journey-builder-custom-hello-world/blob/master/public/ixn/triggers/hello-world/js/helloWorldTrigger.js). What you see inside there now needs updating, please read [MyEvent.js Filter XML property](https://code.exacttarget.com/marketing-automation/journey-builder/interactions/triggers/custom-triggers) section on Code@ for more information about this piece of your custom trigger.
-
 #### Defining our Activity App Extension
 1. In App Center on Code@, with your newly created app open, scroll to the bottom of the page
 
@@ -123,7 +93,7 @@
 4. Save
 
 #### Updating the code to reflect our new App Extensions
-1. Open /public/ixn/activities/hello-world/config.js
+1. Open /public/ixn/activities/hello-world/config.json
 
 2. Copy the "Key" property from your App Extension Custom Activity and paste it into config.js.key value
 
