@@ -82,7 +82,7 @@
                             "isNullable": false,
                             "direction": "in"
                         }
-                    }
+                    },
                     {
                         "call_body": {
                             "dataType": "Text",
