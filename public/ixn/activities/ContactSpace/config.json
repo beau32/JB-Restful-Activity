@@ -4,7 +4,7 @@
         "iconSmall": "images/jb-icon.jpg"
     },
     "key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
-    "type": "myActivityType",
+    "type": "ContactSpace",
     "workflowApiVersion": "1.1",
     "lang": {
         "en-US": {        
@@ -47,7 +47,7 @@
     },
     "configurationArguments": {
         "save": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save"
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save",
             "body": "",
             "verb": "POST",
             "useJwt": false
