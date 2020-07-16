@@ -45,9 +45,12 @@ define([
         }
 
         console.log(values);
-
-    	$('#call_url').val( values[0].call_url );
-        $('#call_body').val( values[1].call_body );
+        
+        if (values.length>0){
+        	$('#call_url').val( values[0].call_url );
+        	$('#call_body').val( values[1].call_body );
+        }
+    	
     	
 
     });
