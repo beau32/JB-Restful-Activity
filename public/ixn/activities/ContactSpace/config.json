@@ -42,12 +42,15 @@
             "retryCount": 1,
             "retryDelay": 10000,
             "concurrentRequests" : 5,
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute"
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute",
         }
     },
     "configurationArguments": {
         "save": {
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save"
+            "body": "",
+            "verb": "POST",
+            "useJwt": false
         },
         "publish": {
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish"
