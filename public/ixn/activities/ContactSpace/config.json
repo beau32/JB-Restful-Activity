@@ -31,13 +31,7 @@
     },
     "arguments": {
         "execute": {
-            "inArguments": [
-            {
-                "emailAddress": "{{InteractionDefaults.Email}}"
-            },
-            {
-                "phoneNumber": "{{Contact.Default.PhoneNumber}}"
-            }],
+            "inArguments": [],
             "outArguments": [],
             "timeout": 100000,
             "retryCount": 1,
