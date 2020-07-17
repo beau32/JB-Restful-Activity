@@ -32,10 +32,10 @@
     "arguments": {
         "execute": {
             "inArguments": [{
-                "emailAddress": "{{InteractionDefaults.Email}}"
+                "emailAddress": ""
             },
             {
-                "phoneNumber": "{{Contact.Default.PhoneNumber}}"
+                "phoneNumber": ""
             }],
             "outArguments": [],
             "timeout": 100000,
