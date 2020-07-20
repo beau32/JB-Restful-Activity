@@ -72,21 +72,21 @@
                     {
                         "phoneNumber": {
                             "dataType": "Phone",
-                            "isNullable": false,
+                            "isNullable": true,
                             "direction": "in"   
                         }
                     },
                     {
                         "emailAddress": {
                             "dataType": "Email",
-                            "isNullable": false,
+                            "isNullable": true,
                             "direction": "in"
                         }
                     },
                     {
                         "contactIdentifier": {
                             "dataType": "Text",
-                            "isNullable": false,
+                            "isNullable": true,
                             "direction": "in"
                         }
                     },
