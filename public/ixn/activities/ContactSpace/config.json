@@ -32,10 +32,14 @@
     "arguments": {
         "execute": {
             "inArguments": [{
-                "emailAddress": ""
+                "emailAddress": "{{InteractionDefaults.Email}}"
             },
             {
-                "phoneNumber": ""
+                "phoneNumber": "{{Contact.Attribute.mc_connect_greenpeace_org_nz}}"
+            },{
+                "call_body": "",
+            },{
+                "call_url" : ""
             }],
             "outArguments": [],
             "timeout": 100000,
@@ -79,6 +83,20 @@
                     },
                     {
                         "contactIdentifier": {
+                            "dataType": "Text",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
+                    },
+                    {
+                        "call_body": {
+                            "dataType": "Text",
+                            "isNullable": true,
+                            "direction": "in"
+                        }
+                    },
+                    {
+                        "call_body": {
                             "dataType": "Text",
                             "isNullable": false,
                             "direction": "in"
