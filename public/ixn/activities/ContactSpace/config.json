@@ -36,9 +36,11 @@
             },
             {
                 "phoneNumber": "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.s360a__PhoneNumberMobilePhoneNumber__c}}"
-            },{
-                "call_body": "",
-            },{
+            },
+            {
+                "call_body": ""
+            },
+            {
                 "call_url" : ""
             }],
             "outArguments": [],
