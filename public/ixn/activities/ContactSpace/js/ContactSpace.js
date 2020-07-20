@@ -80,6 +80,9 @@ define([
 	        //payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  });
 	        
 	        payload['metaData'].isConfigured = true;
+
+	        console.log(payload);
+	        
 	        connection.trigger('updateActivity', payload);
 
             
