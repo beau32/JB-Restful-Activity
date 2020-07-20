@@ -100,7 +100,7 @@
                     {
                         "call_body": {
                             "dataType": "Text",
-                            "isNullable": false,
+                            "isNullable": true,
                             "direction": "in"
                         }
                     }
