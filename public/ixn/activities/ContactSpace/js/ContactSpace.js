@@ -84,7 +84,7 @@ define([
 	        console.log(payload);
 	        
 	        connection.trigger('updateActivity', payload);
-            connection.trigger('nextStep');
+            //connection.trigger('nextStep');
             
         }
 
