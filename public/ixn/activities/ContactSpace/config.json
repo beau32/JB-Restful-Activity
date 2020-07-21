@@ -13,12 +13,9 @@
         }
     },
     "edit": {
-        "uri": "index.html",
-        "maxHeight": 500,
-        "maxWidth": 750,
-        "minHeight": 300,
-        "minWidth": 450,
-        "steps": 1
+        "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/",
+        "height": 400,
+        "width": 500
     },
     "userInterfaces": {
         "configModal": {
@@ -29,26 +26,15 @@
     },
     "arguments": {
         "execute": {
-            "inArguments": [{
-                "emailAddress": "{{InteractionDefaults.Email}}"
-            },
-            {
-                "phoneNumber": ""
-            },
-            {
-                "call_body": ""
-            },
-            {
-                "call_url" : ""
-            },
-            {
-                "contactIdentifier" : "{{Contact.Key}}"
-            }],
+            "inArguments": [
+            { "emailAddress" : "{{InteractionDefaults.Email}}" },
+            { "phoneNumber" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.s360a__PhoneNumberMobilePhoneNumber__c}}" },
+            { "call_body" : "" },
+            { "call_url" : "" },
+            { "contactIdentifier" : "{{Contact.Key}}" }
+            ],
             "outArguments": [],
             "timeout": 100000,
-            "retryCount": 1,
-            "retryDelay": 10000,
-            "concurrentRequests" : 5,
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute"
         }
     },
