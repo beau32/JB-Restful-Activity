@@ -14,8 +14,8 @@
     },
     "edit": {
         "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/",
-        "height": 400,
-        "width": 500
+        "height": 800,
+        "width": 600
     },
     "userInterfaces": {
         "configModal": {
@@ -51,49 +51,6 @@
         "validate": {
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate"
         }
-    },
-    "schema": {
-        "arguments": {
-            "execute": {
-                "inArguments": [
-                    {
-                        "phoneNumber": {
-                            "dataType": "Phone",
-                            "isNullable": true,
-                            "direction": "in"   
-                        }
-                    },
-                    {
-                        "emailAddress": {
-                            "dataType": "Email",
-                            "isNullable": true,
-                            "direction": "in"
-                        }
-                    },
-                    {
-                        "contactIdentifier": {
-                            "dataType": "Text",
-                            "isNullable": true,
-                            "direction": "in"
-                        }
-                    },
-                    {
-                        "call_body": {
-                            "dataType": "Text",
-                            "isNullable": true,
-                            "direction": "in"
-                        }
-                    },
-                    {
-                        "call_url": {
-                            "dataType": "Text",
-                            "isNullable": true,
-                            "direction": "in"
-                        }
-                    }
-                ],
-                "outArguments": []
-            }
-        }
     }
+    
 }
