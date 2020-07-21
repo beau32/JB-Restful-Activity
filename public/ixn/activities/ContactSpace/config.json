@@ -33,7 +33,7 @@
                 "emailAddress": "{{InteractionDefaults.Email}}"
             },
             {
-                "phoneNumber": "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.s360a__PhoneNumberMobilePhoneNumber__c}}"
+                "phoneNumber": ""
             },
             {
                 "call_body": ""
