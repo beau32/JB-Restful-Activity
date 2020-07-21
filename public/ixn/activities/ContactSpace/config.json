@@ -12,8 +12,6 @@
             "description": "Activity simply posts the data to API endpoint."
         }
     },
-    "category": "Custom",
-    "version": "1.0",
     "edit": {
         "uri": "index.html",
         "maxHeight": 500,
