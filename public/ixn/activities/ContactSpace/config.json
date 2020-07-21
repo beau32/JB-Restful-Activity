@@ -14,8 +14,8 @@
     },
     "edit": {
         "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/",
-        "height": 800,
-        "width": 600
+        "height": 600,
+        "width": 800
     },
     "userInterfaces": {
         "configModal": {
