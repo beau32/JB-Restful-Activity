@@ -72,7 +72,7 @@ exports.execute = function( req, res ) {
             console.error(err);
             res.status(200).send(ares.data);
     });
-    
+    res.status(200).send('execute');
 };
 
 /*
@@ -82,7 +82,8 @@ exports.publish = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData( req );
-    res.send( 200, 'Publish' );
+    res.status(200).send('Publish');
+    
 };
 
 /*
@@ -92,5 +93,6 @@ exports.validate = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData( req );
-    res.send( 200, 'Validate' );
+    res.status(200).send('Validate');
+    
 };
