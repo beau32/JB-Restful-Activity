@@ -29,7 +29,7 @@
             "inArguments": [
             { "emailAddress" : "{{InteractionDefaults.Email}}" },
             { "phoneNumber" : "{{Contact.Attribute."Greenpeace International New Zealand mc_connect_greenpeace_org_nz".Contact_Salesforce.s360a__PhoneNumberHomePhoneNumber__c}}" },
-            { "call_body" : " " },
+            { "call_body" : "" },
             { "call_url" : "" },
             { "campaignid" : "{{Contact.Attribute."Greenpeace International New Zealand mc_connect_greenpeace_org_nz".Contact_Salesforce.Campaign_Salesforce.Id}}" },
             { "campaignmemberid" : "{{Contact.Attribute."Greenpeace International New Zealand mc_connect_greenpeace_org_nz".Contact_Salesforce.CampaignMember_Salesforce.Id}}" },
