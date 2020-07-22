@@ -62,6 +62,7 @@ define([
 
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
+    	var bodyvalue = $('#call_meth').val();
 
         if( !urlvalue ) {
         	console.log('empty value');
@@ -78,7 +79,7 @@ define([
            	if (!payload.name) payload.name = 'ContactSpace';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue });
 	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  });
-	        payload['arguments'].execute.inArguments.push({ "call_meth": url_get  });
+	        payload['arguments'].execute.inArguments.push({ "call_meth": methvalue  });
 	        
 	        payload.metaData.isConfigured = true;
 
