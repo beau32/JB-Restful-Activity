@@ -15,10 +15,16 @@
 		<p>This Activity really only does one simple thing, and that's pass the data through to the endpoints on ContactSpace</p>
 		<p>Doing this keeps this as simple as possible and thus...a simple Custom Interactions.</p>
 		<div id="helloWorldTriggerConfigError"></div>
-
+		<br>
+		<br>
+		<label>Method: </label>
+		<select type="text" name="call_meth" id="call_meth">
+			<option value="GET">GET</option>
+			<option value="POST">POST</option>
+		</select><br />
 		<label>URL: </label>
 		<input type="text" name="call_url" id="call_url"><br />
-		<label>Body: </label>
+		<label>Parameters (JSON): </label>
 		<textarea name="call_body" rows="4" cols="50" id="call_body"></textarea>
 	</div>
 </body>
