@@ -58,8 +58,9 @@ exports.save = function( req, res ) {
  */
 exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
+    console.log( req.body );
 
+   
 
     var call_body = null;
     var call_url = url.parse(req.body.call_url);
