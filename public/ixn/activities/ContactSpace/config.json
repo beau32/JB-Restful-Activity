@@ -28,13 +28,13 @@
         "execute": {
             "inArguments": [
             { "emailAddress" : "{{InteractionDefaults.Email}}" },
-            { "phoneNumber" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.s360a__PhoneNumberHomePhoneNumber__c}}" },
+            { "phoneNumber" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.s360a__PhoneNumberHomePhoneNumber__c}}" },
             { "call_body" : "" },
             { "call_url" : "" },
-            { "campaignid" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.Campaign_Salesforce.Id}}" },
-            { "campaignmemberid" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.CampaignMember_Salesforce.Id}}" },
-            { "firstname" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.FirstName}}" },
-            { "lastname" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.LastName}}" },
+            { "campaignid" : "" },
+            { "campaignmemberid" : "" },
+            { "firstname" : "{{Contact.Attribute.Master_Subscriber.FirstName}}" },
+            { "lastname" : "{{Contact.Attribute.Master_Subscriber.LastName}}" },
             { "contactIdentifier" : "{{Contact.Key}}" }
             ],
             "outArguments": [],
