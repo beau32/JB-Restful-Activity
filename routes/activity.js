@@ -19,7 +19,7 @@ function logData( req ) {
         cookies: req.cookies,
         ip: req.ip,
         path: req.path,
-        host: req.host,
+        host: req.hostname,
         fresh: req.fresh,
         stale: req.stale,
         protocol: req.protocol,
