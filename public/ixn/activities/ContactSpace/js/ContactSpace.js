@@ -62,7 +62,7 @@ define([
 
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
-    	var bodyvalue = $('#call_meth').val();
+    	var methvalue = $('#call_meth').val();
 
         if( !urlvalue ) {
         	console.log('empty value');
