@@ -58,12 +58,29 @@ exports.save = function( req, res ) {
  */
 exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
-    console.log( req.body );
+    //console.log( req.body );
 
-    var call_body = req.body.inArguments[0].call_body;
+    var inArguments =  req.body.inArguments;
+    var url,body,header;
 
-    axios(call_body)
+    var val = Object.values(inArguments);
+
+    for (var key of val) {
+        
+        if (key.hasOwnProperty('call_body')){
+            body = key.call_body;
+            
+        }
+        if (key.hasOwnProperty('call_url')){
+            url = key.call_url;
+            
+        }
+    }
+
+    console.log(body);
+    axios(body)
         .then((ares) => {
+            console.log('Body:', ares);
             console.log('Status:', ares.status);
             console.log('Body: ', ares.data);
             res.status(200).send(JSON.stringify(ares.data));
@@ -72,7 +89,8 @@ exports.execute = function( req, res ) {
             console.error(err);
             res.status(200).send(ares.data);
     });
-    res.status(200).send('execute');
+    
+    
 };
 
 /*
