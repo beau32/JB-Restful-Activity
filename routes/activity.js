@@ -60,16 +60,9 @@ exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     console.log( req.body );
 
-   
+    var call_body = req.body.inArguments[0].call_body;
 
-    var call_body = null;
-    var call_url = url.parse(req.body.call_url);
-
-    if(req.body.call_body)
-        var call_body = req.body.call_body;
-        
-
-    axios.post(call_url.href,call_body)
+    axios(call_body)
         .then((ares) => {
             console.log('Status:', ares.status);
             console.log('Body: ', ares.data);

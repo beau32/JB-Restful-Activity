@@ -28,7 +28,7 @@
         "execute": {
             "inArguments": [
             { "emailAddress" : "{{InteractionDefaults.Email}}" },
-            { "phoneNumber" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.s360a__PhoneNumberMobilePhoneNumber__c}}" },
+            { "phoneNumber" : "{{Contact.Attribute.mc_connect_greenpeace_org_nz.Contact_Salesforce.s360a__PhoneNumberHomePhoneNumber__c}}" },
             { "call_body" : "" },
             { "call_url" : "" },
             { "contactIdentifier" : "{{Contact.Key}}" }
