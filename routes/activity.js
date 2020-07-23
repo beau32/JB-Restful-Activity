@@ -79,9 +79,9 @@ exports.execute = function( req, res ) {
             
         }
     }
+    
+    body = body.replace(/\t|\n|\+/,"");
     console.log(body);
-    console.log("-----");
-    console.log(body.replace(/\t|\n|\+/,""));
 
     if (typeof body != 'object'){
         body = urlparser.parse(body);
