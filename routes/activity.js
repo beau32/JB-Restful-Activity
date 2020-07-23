@@ -79,14 +79,14 @@ exports.execute = function( req, res ) {
 
     axios(body)
         .then((ares) => {
-            console.log('Body:', ares);
+            //console.log('Body:', ares);
             console.log('Status:', ares.status);
             console.log('Body: ', ares.data);
             res.status(200).send(JSON.stringify(ares.data));
 
         }).catch((err) => {
             console.error(err);
-            res.status(200).send(ares.data);
+            res.status(200).send(err);
     });
     
     
