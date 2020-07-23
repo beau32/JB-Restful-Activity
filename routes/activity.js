@@ -77,7 +77,6 @@ exports.execute = function( req, res ) {
         }
     }
 
-    console.log(body);
     axios(body)
         .then((ares) => {
             console.log('Body:', ares);
