@@ -79,7 +79,7 @@ exports.execute = function( req, res ) {
             
         }
     }
-    if (!typeof body Object)
+    if (typeof body != 'object')
         body = url.parse(body);
 
     axios(body)
