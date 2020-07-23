@@ -2,7 +2,6 @@
 var util = require( 'util' );
 var fs = require('fs');
 var axios = require('axios');
-var urlparser = require('url');
 
 exports.logExecuteData = [];
 
@@ -83,9 +82,9 @@ exports.execute = function( req, res ) {
     body = body.replace(/\t|\n|\+/,"");
     console.log(body);
     console.log( "------" );
-    
+
     if (typeof body != 'object'){
-        body = urlparser.parse(body);
+        body = JSON.parse(body);
         console.log(body);
 
         axios(body)
