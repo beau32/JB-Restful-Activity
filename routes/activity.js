@@ -2,6 +2,7 @@
 var util = require( 'util' );
 var fs = require('fs');
 var axios = require('axios');
+var url = require('url');
 
 exports.logExecuteData = [];
 
@@ -61,6 +62,7 @@ exports.execute = function( req, res ) {
     console.log( req.body );
     console.log( "------" );
 
+
     var inArguments =  req.body.inArguments;
     var url,body,header;
 
@@ -77,6 +79,8 @@ exports.execute = function( req, res ) {
             
         }
     }
+    if (!typeof body Object)
+        body = url.parse(body);
 
     axios(body)
         .then((ares) => {
