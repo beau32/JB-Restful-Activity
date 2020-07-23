@@ -2,7 +2,7 @@
 var util = require( 'util' );
 var fs = require('fs');
 var axios = require('axios');
-var url = require('url');
+var urlparser = require('url');
 
 exports.logExecuteData = [];
 
@@ -79,10 +79,10 @@ exports.execute = function( req, res ) {
             
         }
     }
-    if (typeof body != 'object')
-        body = url.parse(body);
+    if (typeof body != 'object'){
+        body = urlparser.parse(body);
 
-    axios(body)
+        axios(body)
         .then((ares) => {
             //console.log('Body:', ares);
             console.log('Status:', ares.status);
@@ -92,8 +92,11 @@ exports.execute = function( req, res ) {
         }).catch((err) => {
             console.error(err);
             res.status(200).send(err);
-    });
-    
+        });
+    } else{
+        res.status(200).send("Invalid body");
+    }
+
     
 };
 
