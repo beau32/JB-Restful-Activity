@@ -64,7 +64,7 @@ exports.execute = function( req, res ) {
 
 
     var inArguments =  req.body.inArguments;
-    var url,body,header;
+    var url,body;
 
     var val = Object.values(inArguments);
 
@@ -79,6 +79,10 @@ exports.execute = function( req, res ) {
             
         }
     }
+    console.log(body);
+    console.log("-----");
+    console.log(body.replace(/\t\n\+/,""));
+
     if (typeof body != 'object'){
         body = urlparser.parse(body);
 
