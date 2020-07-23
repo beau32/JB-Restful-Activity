@@ -59,8 +59,8 @@ exports.save = function( req, res ) {
  */
 exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
-    console.log( req.body );
-    console.log( "------" );
+    //console.log( req.body );
+    //console.log( "------" );
 
 
     var inArguments =  req.body.inArguments;
@@ -82,9 +82,11 @@ exports.execute = function( req, res ) {
     
     body = body.replace(/\t|\n|\+/,"");
     console.log(body);
-
+    console.log( "------" );
+    
     if (typeof body != 'object'){
         body = urlparser.parse(body);
+        console.log(body);
 
         axios(body)
         .then((ares) => {
