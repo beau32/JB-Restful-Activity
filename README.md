@@ -1,6 +1,12 @@
 # Journey Builder
 ## Custom Interaction - This is app allows journey builder to integrate with third party API in real time
 
+
+Reference links:
+https://github.com/axios/axios
+https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/how-data-binding-works.htm
+https://github.com/janl/mustache.js/
+
 **NOTE:** You won't be able to run this locally. It is intended to be ran on a publicly available web server/cloud only.
 
 **NOTE:** This app and the associated code is NOT production quality, its pure purpose is to demonstrate the full flow of custom interactions in Journey Builder, it uses express 4.xx instead of 3.
@@ -21,7 +27,7 @@
 
 1. clone this repository locally
 
-2. Login to your Code@ account [https://code.exacttarget.com/user/login](https://code.exacttarget.com/user/login)
+2. Login to your account on Marketing Cloud
 
 3. Select [App Center](https://code.exacttarget.com/appcenter) from the Code@ navigation. Register as a developer if you haven't already.
 
