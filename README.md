@@ -2,10 +2,10 @@
 ## Custom Interaction - This is app allows journey builder to integrate with third party API in real time
 
 
-Reference links:
-https://github.com/axios/axios
-https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/how-data-binding-works.htm
-https://github.com/janl/mustache.js/
+**Reference links:**
+* https://github.com/axios/axios
+* https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/how-data-binding-works.htm
+* https://github.com/janl/mustache.js/
 
 **NOTE:** You won't be able to run this locally. It is intended to be ran on a publicly available web server/cloud only.
 
