@@ -63,4 +63,19 @@ Now that you have updated your configurations to point to the appropriate resour
 
 4. fill in the url and parameters, parameters must be of the request json object specified by axios. use data binding to access any part of the data structure in Mc.
 
+example:
+```
+{
+  method: 'get',
+  url: 'https://apidev.contactspace.com/',
+  data: {
+    apikey: "",
+    function: 'InsertRecord',
+    module: 'data',
+    datasetid: 1745,
+    xmldata: "<record><SF_Status>Pending</SF_Status><SF_Campaign>{{Contact.Attribute.testlist.campaignid}}</SF_Campaign><SF_ActionType>New Regular Gift</SF_ActionType><SF_CampaignMember>{{Contact.Attribute.testlist.campaignmemberid}}</SF_CampaignMember><First_Name>{{Contact.Attribute.testlist.firstname}}</First_Name><Surname>{{Contact.Attribute.testlist.lastname}}</Surname><Phone_number_01>{{Contact.Attribute.testlist.phone}}</Phone_number_01></record>"
+  }
+}
+```
+
 5. activiate the journey, validate result via nodejs server log and destination API endpoint
