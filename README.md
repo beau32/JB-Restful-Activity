@@ -68,7 +68,7 @@ example:
 {
   method: 'get',
   url: 'https://apidev.contactspace.com/',
-  data: {
+  params: {
     apikey: "",
     function: 'InsertRecord',
     module: 'data',
