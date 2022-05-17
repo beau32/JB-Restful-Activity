@@ -8,7 +8,7 @@
     "workflowApiVersion": "1.1",
     "lang": {
         "en-US": {        
-            "name": "ContactSpace",
+            "name": "Restful Activity",
             "description": "Activity simply posts the data to API endpoint."
         }
     },
@@ -33,6 +33,7 @@
             { "contactIdentifier" : "{{Contact.Key}}" }
             ],
             "outArguments": [],
+            "useJwt": true,
             "timeout": 100000,
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute"
         }
@@ -42,13 +43,19 @@
             "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save",
             "body": "",
             "verb": "POST",
-            "useJwt": false
+            "useJwt": true
         },
         "publish": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish"
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish",
+            "body": "",
+            "verb": "POST",
+            "useJwt": true
         },
         "validate": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate"
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate",
+            "body": "",
+            "verb": "POST",
+            "useJwt": true
         }
     }
     

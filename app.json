@@ -1,0 +1,7 @@
+{
+    "name": "RESTful Activity",
+    "description": "This activity allows RESTful api calls to third party systems",
+    "repository": "https://github.com/beau32/jbcustom",
+    "logo": "https://node-js-sample.herokuapp.com/node.png",
+    "keywords": ["node", "express", "static"]
+  }
