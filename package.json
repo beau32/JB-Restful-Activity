@@ -1,0 +1,47 @@
+{
+  "name": "jbcustomapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "connect": "^3.7.0",
+    "cookie-parser": "~1.4.4",
+    "cookie-session": "^2.0.0",
+    "debug": "~2.6.9",
+    "errorhandler": "^1.5.1",
+    "express": "~4.16.1",
+    "express-logger": "^0.0.3",
+    "http": "^0.0.1-security",
+    "http-errors": "~1.6.3",
+    "https": "^1.0.0",
+    "method-override": "^3.0.0",
+    "morgan": "~1.9.1",
+    "path": "^0.12.7",
+    "pug": "^3.0.2",
+    "request": "^2.88.2",
+    "serve-favicon": "^2.5.0",
+    "serve-static": "^1.15.0",
+    "url": "^0.11.0"
+  },
+  "description": "this app allows requests to be made to external api servers",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beau32/JbCustomApp.git"
+  },
+  "keywords": [
+    "node",
+    "journeybuilder",
+    "marketing",
+    "cloud"
+  ],
+  "author": "bo wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beau32/JbCustomApp/issues"
+  },
+  "homepage": "https://github.com/beau32/JbCustomApp#readme"
+}
