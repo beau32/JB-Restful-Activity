@@ -1,0 +1,62 @@
+{
+    "metaData": {
+        "icon": "images/jb-icon.jpg",
+        "iconSmall": "images/jb-icon.jpg"
+    },
+    "key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
+    "type": "Rest",
+    "workflowApiVersion": "1.1",
+    "lang": {
+        "en-US": {        
+            "name": "Restful Activity",
+            "description": "Activity simply posts the data to API endpoint."
+        }
+    },
+    "edit": {
+        "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/",
+        "height": 600,
+        "width": 800
+    },
+    "userInterfaces": {
+        "configModal": {
+            "height": 600,
+            "width": 800,
+            "fullscreen": false
+        }
+    },
+    "arguments": {
+        "execute": {
+            "inArguments": [
+            { "emailAddress" : "{{InteractionDefaults.Email}}" },
+            { "call_body" : "" },
+            { "call_url" : "" },
+            { "contactIdentifier" : "{{Contact.Key}}" }
+            ],
+            "outArguments": [],
+            "useJwt": true,
+            "timeout": 100000,
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute"
+        }
+    },
+    "configurationArguments": {
+        "save": {
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save",
+            "body": "",
+            "verb": "POST",
+            "useJwt": true
+        },
+        "publish": {
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish",
+            "body": "",
+            "verb": "POST",
+            "useJwt": true
+        },
+        "validate": {
+            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate",
+            "body": "",
+            "verb": "POST",
+            "useJwt": true
+        }
+    }
+    
+}

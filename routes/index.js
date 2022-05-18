@@ -1,9 +1,32 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// Deps
+var activity = require('./activity');
+var appstr = "3120816230";
+/*
+ * GET home page.
+ */
+exports.index = function(req, res){
 
-module.exports = router;
+    if( !req.session.token ) {
+        res.render( 'index', {
+            title: 'Unauthenticated',
+            errorMessage: 'This app may only be loaded via the Marketing Cloud',
+        });
+    } else {
+        res.render( 'index', {
+            title: 'Custom Interaction Example',
+            results: activity.logExecuteData,
+        });
+    }
+};
+
+exports.login = function( req, res ) {
+    console.log( 'req.body: ', req.body );
+    req.session.token = appstr;
+    res.redirect( '/' );
+};
+
+exports.logout = function( req, res ) {
+    req.session.token = '';
+};
