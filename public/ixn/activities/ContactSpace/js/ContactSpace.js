@@ -22,9 +22,9 @@ define([
 	// sends the "ready" method. JB parses the serialized object which
 	// consists of the Event Data and passes it to the
 	// "config.js.save.uri" as a POST
-    connection.on('initActivity', function(data) { 
-    	console.log('initActivity');
-    	console.log(data);
+    	connection.on('initActivity', function(data) { 
+    		console.log('initActivity');
+    		console.log(data);
 
     	if (data) {
             payload = data;
@@ -66,7 +66,7 @@ define([
         if( !urlvalue ) {
         	console.log('empty value');
             // Notify user they need to select a value 
-            $('#helloWorldTriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
+            $('#TriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
             connection.trigger('ready');
         } else {
 
