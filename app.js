@@ -10,9 +10,8 @@ var routes      = require('./routes');
 var activity    = require('./routes/activity');
 
 var connect = require('connect');
-var logger  = require('express-logger');
+var logger  = require('winston');
 var cookieParser = require('cookie-parser');
-var sstatic = require('serve-static')
 var methodOverride  = require('method-override')
 var favicon = require('serve-favicon')
 var errorHandler = require('errorhandler') 
@@ -26,19 +25,18 @@ var app = express();
 app.use(cookieParser());
 
 // TODO: MaxAge for cookie based on token exp?
-app.use(cookieSession({secret: "HelloWorld-CookieSecret"}));
+app.use(cookieSession({secret: "JBCustom-CookieSecret"}));
 
 // Configure Express
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-//app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(methodOverride());
-//app.use(favicon());
-//app.use(app.router);
-app.use(sstatic(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Express in Development Mode
 if ('development' == app.get('env')) {

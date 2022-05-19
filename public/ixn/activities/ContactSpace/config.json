@@ -13,13 +13,13 @@
         }
     },
     "edit": {
-        "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/",
+        "url": "https://botestapp.herokuapp.com/ixn/activities/ContactSpace/",
         "height": 600,
         "width": 800
     },
     "userInterfaces": {
         "configModal": {
-            "height": 600,
+            "height": 600
             "width": 800,
             "fullscreen": false
         }
@@ -35,24 +35,24 @@
             "outArguments": [],
             "useJwt": true,
             "timeout": 100000,
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/execute"
+            "url": "https://botestapp.herokuapp.com/ixn/activities/ContactSpace/execute"
         }
     },
     "configurationArguments": {
         "save": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/save",
+            "url": "https://botestapp.herokuapp.com/ixn/activities/ContactSpace/save",
             "body": "",
             "verb": "POST",
             "useJwt": true
         },
         "publish": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/publish",
+            "url": "https://botestapp.herokuapp.com/ixn/activities/ContactSpace/publish",
             "body": "",
             "verb": "POST",
             "useJwt": true
         },
         "validate": {
-            "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/validate",
+            "url": "https://botestapp.herokuapp.com/ixn/activities/ContactSpace/validate",
             "body": "",
             "verb": "POST",
             "useJwt": true
