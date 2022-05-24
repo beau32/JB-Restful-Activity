@@ -33,7 +33,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.json());
-app.use(express.urlencoded());
 app.use(methodOverride());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -55,34 +54,10 @@ app.post('/ixn/activities/ContactSpace/validate/', activity.validate );
 app.post('/ixn/activities/ContactSpace/publish/', activity.publish );
 app.post('/ixn/activities/ContactSpace/execute/', activity.execute );
 
-// Abstract Event Handler
-app.post('/fireEvent/:type', function( req, res ) {
-
-    var call_body = null;
-    var call_url = url.parse(req.body.call_url);
-
-    if(req.body.call_body)
-        var call_body = req.body.call_body;
-        
-    console.log(call_url.href);
-
-    axios.post(call_url.href,call_body)
-        .then((ares) => {
-            console.log('Status:', ares.status);
-            console.log('Body: ', ares.data);
-            res.status(200).send(JSON.stringify(ares.data));
-
-        }).catch((err) => {
-            console.error(err);
-            res.status(200).send(err.response.data);
-    });
-
-});
-
 app.get('/clearList', function( req, res ) {
 	// The client makes this request to get the data
 	activity.logExecuteData = [];
-    res.status(200).send('Cleared');
+	res.status(200).send('Cleared');
 	
 });
 
@@ -97,6 +72,7 @@ app.get('/getActivityData', function( req, res ) {
 	}
 });
 
-http.createServer(app).listen(app.get('port'), function(){
+app.listen(app.get('port'),function (parent) {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
