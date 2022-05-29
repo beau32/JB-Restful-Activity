@@ -78,44 +78,65 @@ exports.execute = function( req, res ) {
 
 
 	var inArguments =  req.body.inArguments;
-	var url,body;
-
+	var json = {};
+try {
 	var val = Object.values(inArguments);
+		for (var key of val){
 
-	for (var key of val) {
-
-		if (key.hasOwnProperty('call_body')){
-			body = key.call_body;
-
+			if (key.hasOwnProperty('call_body')){
+				console.log(key.call_body);
+				json.call_body = JSON.parse(key.call_body);
+			}
+			if (key.hasOwnProperty('call_retry')){
+				json.call_retry = key.call_retry;
+			}
+			if (key.hasOwnProperty('auth_id')){
+				json.auth_id = key.auth_id;
+			}
+			if (key.hasOwnProperty('auth_url')){
+				json.auth_url = key.auth_url;
+			}
+			if (key.hasOwnProperty('auth_secret')){
+				json.auth_secret = key.auth_secret;
+			}
+			if (key.hasOwnProperty('webhook')){
+				json.webhook = key.webhook;
+			}
+			
 		}
-		if (key.hasOwnProperty('call_url')){
-			url = key.call_url;
 
-		}
-	}
 
-	body = body.replace(/\t|\n|\+/,"");
-	console.log(body);
+	console.log(json);
 	console.log( "------" );
+	var msg;
 
-	if (typeof body != 'object'){
-		body = JSON.parse(body);
-		console.log(body);
-
-		axios(body)
-			.then((ares) => {
-				//console.log('Body:', ares);
+	axios(json.call_body)
+		.then((ares) => {
 				console.log('Status:', ares.status);
 				console.log('Body: ', ares.data);
-				res.status(200).send(JSON.stringify(ares.data));
+			if (json.webhook)
+				axios({
+				"method":"post",
+				"url":json.webhook
+			}).then((ares)=> {
 
-			}).catch((err) => {
-				console.error(err);
-				res.status(200).send(err);
+				console.log('webhook: '+json.webhook)
+				console.log('Status:', ares.status);
+				console.log('Body: ', ares.data);
+
 			});
-	} else{
-		res.status(200).send("Invalid body");
-	}
+			msg = 'OK';
+		}).catch((err) => {
+			console.error(err);
+			msg = err;
+		});
+	
+}catch(e){
+		console.error(e);
+		msg = e.message;
+
+}
+	res.status(200).send(msg);
 
 
 };
@@ -137,7 +158,7 @@ exports.publish = function( req, res ) {
 exports.validate = function( req, res ) {
 	// Data from the req and put it in an array accessible to the main app, validated to ensure it has the right element to execute the call.
 	var validator = new Validator();
-	if (Object.keys( req.body.inArguments ).length) {
+	if (Object.keys( req.body.inArguments ).length<1) {
 		res.status(200).send('Invalid InArguments');
 		return;
 	}
@@ -162,6 +183,7 @@ exports.validate = function( req, res ) {
 			"auth_url": {type: "string", format: 'url'},
 			"auth_id": {type: "string", "minLength": 1},
 			"auth_secret": {type: "string", "minLength": 1},
+			"webhook": {type:"string", format: 'url'}
 		},
 		"required": ["call_body","call_retry"],
 		"dependencies": {
@@ -175,10 +197,11 @@ exports.validate = function( req, res ) {
 		console.log(req.body.inArguments);
 		var val = Object.values(req.body.inArguments);
 		var json = {};
-
+		
 		for (var key of val){
 
 			if (key.hasOwnProperty('call_body')){
+				console.log(key.call_body);
 				json.call_body = JSON.parse(key.call_body);
 			}
 			if (key.hasOwnProperty('call_retry')){
@@ -193,21 +216,28 @@ exports.validate = function( req, res ) {
 			if (key.hasOwnProperty('auth_secret')){
 				json.auth_secret = key.auth_secret;
 			}
+			if (key.hasOwnProperty('webhook')){
+				json.webhook = key.webhook;
+			}	
 		}
 
 
 		var result = validator.validate(json, schema);
+		var msg = '';
+
 		if (result.errors.length!=0){
-			var msg = result.errors.map(function(err){
+			msg = result.errors.map(function(err){
 				return err.stack;
 			});
+		}else{
+			msg ="OK";
 		}
 		logData( req );
 
 		console.log(msg);
 	}catch (e){
 		console.log(e);
-		var msg = e.message;
+		msg = e.message;
 	}
 
 	res.status(200).send(msg);

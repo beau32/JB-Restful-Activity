@@ -66,9 +66,9 @@ app.get('/clearList', function( req, res ) {
 app.get('/getActivityData', function( req, res ) {
 	// The client makes this request to get the data
 	if( !activity.logExecuteData.length ) {
-		res.send( 200, {data: null} );
+		res.status(200).send( {data: "No Found"} );
 	} else {
-		res.send( 200, {data: activity.logExecuteData} );
+		res.status(200).send( {data: activity.logExecuteData[activity.logExecuteData.length-1]} );
 	}
 });
 

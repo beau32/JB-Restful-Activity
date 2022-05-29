@@ -15,7 +15,7 @@ exports.index = function(req, res){
         });
     } else {
         res.render( 'index', {
-            title: 'Custom Interaction Example',
+            title: 'Custom Interaction',
             results: activity.logExecuteData,
         });
     }
