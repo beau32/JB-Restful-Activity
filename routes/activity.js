@@ -2,6 +2,10 @@
 var util = require( 'util' );
 var fs = require('fs');
 var axios = require('axios');
+const oauth = require('axios-oauth-client');
+const tokenProvider = require('axios-token-interceptor');
+require('axios-debug-log');
+
 var Validator = require('jsonschema').Validator;
 
 Validator.prototype.customFormats.getorpost = function(input) {
@@ -76,15 +80,16 @@ exports.execute = function( req, res ) {
 	//console.log( req.body );
 	//console.log( "------" );
 
-
 	var inArguments =  req.body.inArguments;
 	var json = {};
-try {
-	var val = Object.values(inArguments);
+
+	var msg;
+	
+	try {
+		var val = Object.values(inArguments);
 		for (var key of val){
 
 			if (key.hasOwnProperty('call_body')){
-				console.log(key.call_body);
 				json.call_body = JSON.parse(key.call_body);
 			}
 			if (key.hasOwnProperty('call_retry')){
@@ -102,41 +107,62 @@ try {
 			if (key.hasOwnProperty('webhook')){
 				json.webhook = key.webhook;
 			}
+
+		}
+		
+		require('axios-debug-log/enable');
+		
+		let instance = axios.create();
+		if (json.auth_url){
+			const getAuthorizationCode = oauth.client(axios.create(), {
+				url: json.auth_url,
+				grant_type: 'client_credentials',
+				client_id: json.auth_id,
+				client_secret: json.auth_secret
+			});
+			const cache = tokenProvider.tokenCache(
+				() => getAuthorizationCode().then(res =>res), {
+					getMaxAge: (body) => body.expires_in *1000
+			});
 			
+			instance.interceptors.request.use(tokenProvider({
+				getToken: cache,
+				headerFormatter: (body) => 'Bearer ' + body.access_token,
+			}));
+
 		}
 
+		
+		console.log(json);
+		console.log( "------" );
 
-	console.log(json);
-	console.log( "------" );
-	var msg;
-
-	axios(json.call_body)
-		.then((ares) => {
-				console.log('Status:', ares.status);
-				console.log('Body: ', ares.data);
-			if (json.webhook)
-				axios({
-				"method":"post",
-				"url":json.webhook
-			}).then((ares)=> {
-
-				console.log('webhook: '+json.webhook)
-				console.log('Status:', ares.status);
-				console.log('Body: ', ares.data);
-
+		instance(json.call_body)
+			.then((ares) => {
+				msg = 'OK';
+				res.status(200).send(msg);
+				return ares;
+			}).catch((err) => {
+				console.error(err);
+				msg = err.code;
+				res.status(200).send(msg);
+			}).finally(() => {
+                        	if (json.webhook)
+                                        instance({
+                                                "method":"post",
+                                                "url":json.webhook
+                                        }).then((ares)=> {
+                                                console.log('Webhook ');
+                                                console.log('Status:', ares.status);
+                                                console.log('Body: ', ares.data);
+                                        } );
+				
 			});
-			msg = 'OK';
-		}).catch((err) => {
-			console.error(err);
-			msg = err;
-		});
-	
-}catch(e){
+
+	}catch(e){
 		console.error(e);
 		msg = e.message;
-
-}
-	res.status(200).send(msg);
+		res.status(200).send(msg);
+	}
 
 
 };
@@ -162,7 +188,7 @@ exports.validate = function( req, res ) {
 		res.status(200).send('Invalid InArguments');
 		return;
 	}
-	
+
 	var callbody_schema = {
 		"id": "/axios",
 		"type": "object",
@@ -197,7 +223,7 @@ exports.validate = function( req, res ) {
 		console.log(req.body.inArguments);
 		var val = Object.values(req.body.inArguments);
 		var json = {};
-		
+
 		for (var key of val){
 
 			if (key.hasOwnProperty('call_body')){
@@ -220,7 +246,6 @@ exports.validate = function( req, res ) {
 				json.webhook = key.webhook;
 			}	
 		}
-
 
 		var result = validator.validate(json, schema);
 		var msg = '';
