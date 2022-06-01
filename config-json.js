@@ -2,8 +2,8 @@ module.exports = function configJSON(req) {
 	return {
 
 		"metaData": {
-			"icon": "images/jb-icon.jpg",
-			"iconSmall": "images/jb-icon.jpg"
+			"icon": "JBcustom/images/jb-icon.jpg",
+			"iconSmall": "JBcustom/images/jb-icon.jpg"
 		},
 		"key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
 		"type": "Rest",

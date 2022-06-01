@@ -1,14 +1,14 @@
 requirejs.config({
     paths: {
         vendor: '../vendor',
-		postmonger: 'vendor/postmonger'
+		postmonger: 'JBcustom/vendor/postmonger'
     },
     shim: {
         'vendor/jquery.min': {
             exports: '$'
         },
-		'ContactSpace': {
-			deps: ['vendor/jquery.min', 'vendor/postmonger']
+		'JBcustom': {
+			deps: ['JBcustom/vendor/jquery.min', 'JBcustom/vendor/postmonger']
 		}
     }
 });
