@@ -32,6 +32,7 @@ module.exports = function configJSON(req) {
 					{ "emailAddress" : "{{InteractionDefaults.Email}}" },
 					{ "call_body" : "" },
 					{ "call_url" : "" },
+					{ "call_retry": ""},
 					{"auth_url":""},
 					{"auth_id":""},
 					{"auth_secret":""},
