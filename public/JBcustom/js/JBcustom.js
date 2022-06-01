@@ -53,10 +53,10 @@ define([
         if (values && values.length>0){
         	$('#call_url').val( values[0].call_url );
         	$('#call_body').val( values[1].call_body );
-		$('#call_retry').val( values[2].call_url );
-                $('#auth_url').val( values[3].call_body );
-                $('#auth_id').val( values[4].call_url );
-                $('#auth_secret').val( values[5].call_body );
+		$('#call_retry').val( values[2].call_retry );
+                $('#auth_url').val( values[3].auth_url );
+                $('#auth_id').val( values[4].auth_id );
+                $('#auth_secret').val( values[5].auth_secret );
         }
     	
     	
