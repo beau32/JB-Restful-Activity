@@ -1,19 +1,19 @@
 requirejs.config({
     paths: {
-        vendor: 'Jbcustom/vendor',
-		postmonger: 'JBcustom/vendor/postmonger'
+        vendor: '../vendor',
+		postmonger: 'vendor/postmonger'
     },
     shim: {
-        'JBcustom/vendor/jquery.min': {
+        'vendor/jquery.min': {
             exports: '$'
         },
 		'JBcustom': {
-			deps: ['JBcustom/vendor/jquery.min', 'JBcustom/vendor/postmonger']
+			deps: ['vendor/jquery.min', 'vendor/postmonger']
 		}
     }
 });
 
-requirejs( ['JBcustom/vendor/jquery.min', 'JBcustom'], function( $, ContactSpace ) {
+requirejs( ['vendor/jquery.min', 'JBcustom'], function( $, ContactSpace ) {
 	//console.log( 'REQUIRE LOADED' );
 });
 
