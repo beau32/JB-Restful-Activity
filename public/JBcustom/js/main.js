@@ -1,10 +1,10 @@
 requirejs.config({
     paths: {
-        vendor: '../vendor',
+        vendor: 'Jbcustom/vendor',
 		postmonger: 'JBcustom/vendor/postmonger'
     },
     shim: {
-        'vendor/jquery.min': {
+        'JBcustom/vendor/jquery.min': {
             exports: '$'
         },
 		'JBcustom': {
@@ -13,7 +13,7 @@ requirejs.config({
     }
 });
 
-requirejs( ['vendor/jquery.min', 'JBcustom'], function( $, ContactSpace ) {
+requirejs( ['JBcustom/vendor/jquery.min', 'JBcustom'], function( $, ContactSpace ) {
 	//console.log( 'REQUIRE LOADED' );
 });
 
