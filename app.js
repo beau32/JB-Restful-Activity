@@ -20,6 +20,7 @@ var url = require('url');
 var axios = require('axios');
 
 var app = express();
+const configJSON = require(path.join(__dirname,'/public/JBcustom/config.json'));
 
 // Use the cookie-based session  middleware
 app.use(cookieParser());
@@ -48,11 +49,11 @@ app.get('/login', routes.login );
 app.get('/logout', routes.logout );
 
 // Custom Hello World Activity Routes
-app.post('/ixn/activities/ContactSpace/save/', activity.save );
-app.post('/ixn/activities/ContactSpace/edit/', activity.edit );
-app.post('/ixn/activities/ContactSpace/validate/', activity.validate );
-app.post('/ixn/activities/ContactSpace/publish/', activity.publish );
-app.post('/ixn/activities/ContactSpace/execute/', activity.execute );
+app.post('/JBcustom/save/', activity.save );
+app.post('/JBcustom/edit/', activity.edit );
+app.post('/JBcustom/validate/', activity.validate );
+app.post('/JBcustom/publish/', activity.publish );
+app.post('/JBcustom/execute/', activity.execute );
 
 app.get('/clearList', function( req, res ) {
 	// The client makes this request to get the data
@@ -70,6 +71,11 @@ app.get('/getActivityData', function( req, res ) {
 	} else {
 		res.status(200).send( {data: activity.logExecuteData[activity.logExecuteData.length-1]} );
 	}
+});
+app.get('/config.json', function(req, res) {
+        // Journey Builder looks for config.json when the canvas loads.
+        // We'll dynamically generate the config object with a function
+        return res.status(200).json(configJSON(req));
 });
 
 app.listen(app.get('port'),function (parent) {

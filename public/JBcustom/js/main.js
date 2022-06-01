@@ -13,7 +13,7 @@ requirejs.config({
     }
 });
 
-requirejs( ['vendor/jquery.min', 'ContactSpace'], function( $, ContactSpace ) {
+requirejs( ['vendor/jquery.min', 'JBcustom'], function( $, ContactSpace ) {
 	//console.log( 'REQUIRE LOADED' );
 });
 

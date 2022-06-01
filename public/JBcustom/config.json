@@ -13,7 +13,7 @@
 		}
 	},
 	"edit": {
-		"url": "https://${req.headers.host}/ixn/activities/ContactSpace/",
+		"url": "https://${req.headers.host}/JBcustom/",
 		"height": 600,
 		"width": 800
 	},
@@ -38,24 +38,24 @@
 			"outArguments": [],
 			"useJwt": true,
 			"timeout": 100000,
-			"url": "https://${req.headers.host}/ixn/activities/ContactSpace/execute"
+			"url": "https://${req.headers.host}/JBcustom/execute"
 		}
 	},
 	"configurationArguments": {
 		"save": {
-			"url": "https://${req.headers.host}/ixn/activities/ContactSpace/save",
+			"url": "https://${req.headers.host}/JBcustom/save",
 			"body": "",
 			"verb": "POST",
 			"useJwt": true
 		},
 		"publish": {
-			"url": "https://${req.headers.host}/ixn/activities/ContactSpace/publish",
+			"url": "https://${req.headers.host}/JBcustom/publish",
 			"body": "",
 			"verb": "POST",
 			"useJwt": true
 		},
 		"validate": {
-			"url": "https://${req.headers.host}/ixn/activities/ContactSpace/validate",
+			"url": "https://${req.headers.host}/JBcustom/validate",
 			"body": "",
 			"verb": "POST",
 			"useJwt": true
