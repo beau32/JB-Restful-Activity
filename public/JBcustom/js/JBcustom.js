@@ -44,7 +44,7 @@ define([
 
         if (hasInArguments){
         	values = payload['arguments'].execute.inArguments.filter(function( obj ) {
-				return obj.hasOwnProperty('call_url') || obj.hasOwnProperty('call_body') || obj.hasOwnProperty('call_retry' || obj.hasOwnProperty('auth_url') || obj.hasOwnProperty('auth_id') || obj.hasOwnProperty('auth_secret'));
+				return obj.hasOwnProperty('call_url') || obj.hasOwnProperty('call_body') || obj.hasOwnProperty('call_retry') || obj.hasOwnProperty('auth_url') || obj.hasOwnProperty('auth_id') || obj.hasOwnProperty('auth_secret'));
 			});
         }
 
