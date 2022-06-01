@@ -20,8 +20,9 @@ var url = require('url');
 var axios = require('axios');
 
 var app = express();
-const configJSON = require(path.join(__dirname,'/public/JBcustom/config.json'));
 
+const configJSON = require('./config-json');
+console.log(configJSON);
 // Use the cookie-based session  middleware
 app.use(cookieParser());
 
