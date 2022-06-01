@@ -16,6 +16,10 @@ define([
     $(window).ready(function() {
         connection.trigger('ready');
         console.log('ready');
+	$('#oauth').change(function(){
+                $('#oautharea').toggle();
+	});
+
     })
 
 	// Journey Builder broadcasts this event to us after this module
@@ -24,9 +28,6 @@ define([
 	// "config.js.save.uri" as a POST
     	connection.on('initActivity', function(data) { 
     		console.log('initActivity');
-	$('#oauth').click(function(
-                $('#oautharea').toggle();
-        ));
     		console.log(data);
 
     	if (data) {
