@@ -9,6 +9,7 @@
     "axios": "^0.27.2",
     "axios-debug-log": "^0.8.4",
     "axios-oauth-client": "^1.5.0",
+    "axios-retry": "^3.2.5",
     "axios-token-interceptor": "^0.2.0",
     "body-parser": "^1.19.0",
     "connect": "^3.7.0",

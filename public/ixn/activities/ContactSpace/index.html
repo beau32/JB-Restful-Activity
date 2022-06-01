@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Restful Activity</title>
-	<script data-main="js/main.js" src="js/require.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title>Restful Activity</title>
+		<script data-main="js/main.js" src="js/require.js"></script>
 
-	<!--Styles-->
-	<link rel="stylesheet" type="text/css" href="css/styles.css" />
-</head>
-<body>
-	<div id="container">
-		<h1>ContactSpace Custom Activity</h1>
-		<p>This Activity really only does one simple thing, and that's passing the data through to a endpoint while passing through</p>
-		<p>Doing this by keeping the configuration to minimal and allowing maxiumn flexiblity, thus...using a simple custom activity to accomplish this. Refer to <a href="https://www.npmjs.com/package/axios" >Axios</a></p>
-		<div id="TriggerConfigError"></div>
-		<br>
-		
-		<div>Authorisation Oauth2</div>
-		
-		<label>Auth URL: </label>
-		<input type="text" name="auth_url" id="auth_url"><br />
-		<label>Client ID</label>
-		<input type="text" name="auth_id" id="auth_id"><br />
-		<label>Client Secret</label>
-		<input type="text" name="auth_secret" id="auth_secret"><br />
-	
+		<!--Styles-->
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	</head>
+	<body>
+		<div id="container">
+			<h1>ContactSpace Custom Activity</h1>
+			<p>This Activity really only does one simple thing, and that's passing the data through to a endpoint while passing through</p>
+			<p>Doing this by keeping the configuration to minimal and allowing maxiumn flexiblity, thus...using a simple custom activity to accomplish this. Refer to <a href="https://www.npmjs.com/package/axios" >Axios</a></p>
+			<div id="TriggerConfigError"></div>
+			<br>
 
-		<div>Request: </div>
-		<label>Request Parameters (JSON): </label>
-		<textarea name="call_body" rows="14" cols="50" id="call_body"></textarea>
-		<label>Webhook URL: </label>
-		<input type="text" name="call_url" id="call_url"><br />
-		<label>Retry</label>
-		<input type="text" name="call_retry" id="call_retry"><br />
-	
-	
-	</div>
-</body>
+
+			<div>Request: </div>
+			<label>Request Parameters (JSON): </label>
+			<textarea name="call_body" rows="14" cols="50" id="call_body"></textarea>
+			<label>Webhook URL: </label>
+			<input type="text" name="call_url" id="call_url"><br />
+			<label>Retry</label>
+			<input type="text" name="call_retry" id="call_retry"><br />
+			<input type="checkbox" id="oauth"/><label>need Oauth2?</label>
+
+			<div id="Oautharea" style="display:none">		
+				<label>Auth URL: </label>
+				<input type="text" name="auth_url" id="auth_url"><br />
+				<label>Client ID</label>
+				<input type="text" name="auth_id" id="auth_id"><br />
+				<label>Client Secret</label>
+				<input type="text" name="auth_secret" id="auth_secret"><br />
+			</div>
+
+
+
+		</div>
+	</body>
 </html>

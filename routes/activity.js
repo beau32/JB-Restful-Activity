@@ -4,6 +4,8 @@ var fs = require('fs');
 var axios = require('axios');
 const oauth = require('axios-oauth-client');
 const tokenProvider = require('axios-token-interceptor');
+const axiosRetry = require('axios-retry');
+
 require('axios-debug-log');
 
 var Validator = require('jsonschema').Validator;
@@ -113,6 +115,12 @@ exports.execute = function( req, res ) {
 		require('axios-debug-log/enable');
 		
 		let instance = axios.create();
+
+		if (json.call_retry){
+
+			axiosRetry(instance, { retries: json.call_retry });
+		}
+
 		if (json.auth_url){
 			const getAuthorizationCode = oauth.client(axios.create(), {
 				url: json.auth_url,
