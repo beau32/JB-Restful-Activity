@@ -12,20 +12,29 @@
 	<body>
 		<div id="container">
 			<h1>Restful Custom Activity</h1>
-			<p>This Activity really only does one simple thing, and that's passing the data through to a endpoint while passing through</p>
-			<p>Doing this by keeping the configuration to minimal and allowing maxiumn flexiblity, thus...using a simple custom activity to accomplish this. Refer to <a href="https://www.npmjs.com/package/axios" >Axios</a></p>
+			<p>This Activity really only does one simple thing, and that's passing the data through to a endpoint.</p>
+			<p>Doing this by keeping the configuration to minimal and allowing maxiumn flexiblity, thus...using a simple restful custom activity to accomplish this. Refer to <a href="https://www.npmjs.com/package/axios" >Axios</a>.</p>
 			<div id="TriggerConfigError"></div>
 			<br>
 
-
-			<div>Request: </div>
+			<div>
+				<h3>Request: </h3>
+			</div>
 			<label>Request Parameters (JSON): </label>
 			<textarea name="call_body" rows="14" cols="50" id="call_body"></textarea>
-			<label>Webhook URL: </label>
-			<input type="text" name="call_url" id="call_url"><br />
 			<label>Retry</label>
-			<input type="text" name="call_retry" id="call_retry"><br />
-			<input type="checkbox" id="oauth"/><label>need Oauth2?</label>
+			<select name="call_retry" id="call_retry" style="width: 150px;margin: 10px;"> 
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+
+			</select><br />
+			<label>Webhook URL: </label>
+
+			<input type="text" name="call_url" id="call_url"><br />
+
+			<input type="checkbox" id="oauth"/><label>Oauth 2.0?</label>
 
 			<div id="oautharea" style="display:none">		
 				<label>Auth URL: </label>
