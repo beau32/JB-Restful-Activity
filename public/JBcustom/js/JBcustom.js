@@ -70,6 +70,8 @@ define([
 
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
+	var auth_url = $('#auth_url').val();
+
 	var client_id = $('#auth_id').val();
 	var call_retry = $('#call_retry').val();
 	var client_secret = $('#auth_secret').val();;
@@ -89,7 +91,7 @@ define([
            	if (!payload.name) payload.name = 'JBCustom';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue });
 	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  });
-		payload['arguments'].execute.inArguments.push({ "call_retry": retry  });
+		payload['arguments'].execute.inArguments.push({ "call_retry": call_retry  });
 		payload['arguments'].execute.inArguments.push({ "auth_id": auth_id  });
 		payload['arguments'].execute.inArguments.push({ "auth_secret": auth_secret  });
 		payload['arguments'].execute.inArguments.push({ "auth_url": auth_url  });
