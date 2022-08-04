@@ -70,20 +70,20 @@ define([
 
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
+	var auth_url = $('#auth_url').val();
+	var client_id = $('#client_id').val();
+	var call_retry = $('#call_retry').val();
+	var client_secret = $('#client_secret').val();;
 
-        if( !urlvalue ) {
-        	console.log('empty value');
+        connection.trigger('ready');
+        
+	if( !bodyvalue ) {
+        	console.log('empty body value');
             // Notify user they need to select a value 
-            $('#TriggerConfigError').html('<strong style="color: red;">You must enter something</strong>');
-            connection.trigger('ready');
+            	$('#TriggerConfigError').html('<strong style="color: red;">Request Body Cannot be Empty</strong>');
         } else {
 
-        	payload['arguments'].execute.inArguments = payload['arguments'].execute.inArguments.filter(function( obj ) {
-			    return !obj.hasOwnProperty('call_url') && !obj.hasOwnProperty('call_body');
-			});
-
-
-           	if (!payload.name) payload.name = 'ContactSpace';
+           	if (!payload.name) payload.name = 'JBCustom';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue });
 	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  });
 	        

@@ -3,3 +3,4 @@ node_modules
 *.swo
 *.log
 node_modules
+addon-manifest.json
