@@ -70,10 +70,9 @@ define([
 
     	var urlvalue = $('#call_url').val();
     	var bodyvalue = $('#call_body').val();
-	var auth_url = $('#auth_url').val();
-	var client_id = $('#client_id').val();
+	var client_id = $('#auth_id').val();
 	var call_retry = $('#call_retry').val();
-	var client_secret = $('#client_secret').val();;
+	var client_secret = $('#auth_secret').val();;
 
         connection.trigger('ready');
         
@@ -83,9 +82,18 @@ define([
             	$('#TriggerConfigError').html('<strong style="color: red;">Request Body Cannot be Empty</strong>');
         } else {
 
+	payload['arguments'].execute.inArguments = payload['arguments'].execute.inArguments.filter(function( obj ) {
+				return obj.hasOwnProperty('call_url') || obj.hasOwnProperty('call_body') || obj.hasOwnProperty('call_retry') || obj.hasOwnProperty('auth_url') || obj.hasOwnProperty('auth_id') || obj.hasOwnProperty('auth_secret');
+			});
+
            	if (!payload.name) payload.name = 'JBCustom';
 	        payload['arguments'].execute.inArguments.push({ "call_url": urlvalue });
 	        payload['arguments'].execute.inArguments.push({ "call_body": bodyvalue  });
+		payload['arguments'].execute.inArguments.push({ "call_retry": retry  });
+		payload['arguments'].execute.inArguments.push({ "auth_id": auth_id  });
+		payload['arguments'].execute.inArguments.push({ "auth_secret": auth_secret  });
+		payload['arguments'].execute.inArguments.push({ "auth_url": auth_url  });
+		
 	        
 	        payload.metaData.isConfigured = true;
 
