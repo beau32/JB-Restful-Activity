@@ -2,5 +2,5 @@ node_modules
 *.swp
 *.swo
 *.log
-node_modules
 addon-manifest.json
+

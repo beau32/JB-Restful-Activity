@@ -23,7 +23,6 @@ Validator.prototype.customFormats.url = function(input) {
 	return input.length == 0 || input.search(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i) != -1;
 };
 
-
 exports.logExecuteData = [];
 
 function logData( req ) {
