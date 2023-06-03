@@ -2,7 +2,7 @@
 
 // Deps
 var activity = require('./activity');
-var appstr = "3120816230";
+var appstr = Math.random() * (11000 - 10000) + 10000;;
 /*
  * GET home page.
  */
@@ -15,7 +15,7 @@ exports.index = function(req, res){
         });
     } else {
         res.render( 'index', {
-            title: 'Custom Interaction',
+            title: 'JB Custom Activity',
             results: activity.logExecuteData,
         });
     }

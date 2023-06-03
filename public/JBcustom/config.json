@@ -8,12 +8,12 @@
     "workflowApiVersion": "1.1",
     "lang": {
         "en-US": {        
-            "name": "Restful Activity",
+            "name": "JB Restful Activity",
             "description": "Activity simply posts the data to API endpoint."
         }
     },
     "edit": {
-        "url": "https://journeyext.herokuapp.com/ixn/activities/ContactSpace/",
+        "url": "",
         "height": 600,
         "width": 800
     },
@@ -29,7 +29,12 @@
             "inArguments": [
             { "emailAddress" : "{{InteractionDefaults.Email}}" },
             { "call_body" : "" },
-            { "call_url" : "" },
+            { "pre_script" : "" },
+            { "post_script" : "" },
+            { "auth_url" : "" },
+            { "webhook" : "" },
+            { "auth_id" : "" },
+            { "auth_secret" : "" },
             { "contactIdentifier" : "{{Contact.Key}}" }
             ],
             "outArguments": [],
