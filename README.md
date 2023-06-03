@@ -1,6 +1,6 @@
-# Journey Builder
-## Custom Interaction - This is app allows journey builder to integrate with third party API in real time
+## JB Custom Activity - This is app allows SFMC journey builder to integrate with third party API in real time
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/beau32/JB-Restful-Activity)
 
 **Reference links:**
 * https://github.com/axios/axios
@@ -9,23 +9,18 @@
 
 **NOTE:** You won't be able to run this locally. It is intended to be ran on a publicly available web server/cloud only.
 
-**NOTE:** This app and the associated code is NOT production quality, its pure purpose is to demonstrate the full flow of custom interactions in Journey Builder, it uses express 4.xx instead of 3.
-
 ### Pre-Requisites
 
 * Node.js (to test locally)
 * Must have an Salesforce Marketing Cloud account
 * Journey Builder and all associated applications  must be provisioned into this account
-* A publicly accessible web server or cloud (this app uses [Heroku](https://heroku.com) with a single dyno, You'll need the Heroku toolbelt if you're using that PaaS for this app.
-* Web Server or Cloud MUST support SSL (which is why we recommend Heroku...it just works for single dyno apps)
-* A valid Code@ account and associated App Center Developer Account (available from within Code@)
+* A publicly accessible web server or cloud (this app uses netlify)
+* Web Server or Cloud MUST support SSL
 * Understanding of client-server communications, JavaScript, HTML(5), Node.js and Express
 
 ### How To Use
 
-#### Creating our base app in Code@
-
-1. clone this repository locally
+1. Deploy to netlify using the button above
 
 2. Login to your account on Marketing Cloud
 
@@ -33,11 +28,7 @@
 
 4. Select "Create New App"
 
-5. Create a custom activity for journey builder, and fill in the endpoint for the app, hit save.
-
-6. Integrate your app with an account which will not be impacted by having an additional icon in the app switcher of the marketing cloud
-
-7. Make sure everything is correct, and finish.
+5. Create a custom activity for journey builder, and fill in the endpoint for the app, `{subdomain}.netlify.app/public/jbcustom/` hit save then hit finish.
 
 8. Go to Journey Builder and you should see the custom activity appearing in the bottom.
 
@@ -61,21 +52,22 @@ Now that you have updated your configurations to point to the appropriate resour
 
 3. The custom activity dialog should appear (this is loading from your app)
 
-4. fill in the url and parameters, parameters must be of the request json object specified by axios. use data binding to access any part of the data structure in Mc.
+4. fill in the request body using json object specified by axios. Leverage data binding to access any part of the data structure sent in from SFMC.
 
 example:
 ```
 {
   method: 'get',
-  url: 'https://apidev.contactspace.com/',
+  url: 'https://apidev.example.com/',
   params: {
     apikey: "",
     function: 'InsertRecord',
     module: 'data',
-    datasetid: 1745,
+    datasetid: 8088,
     xmldata: "<record><SF_Status>Pending</SF_Status><SF_Campaign>{{Contact.Attribute.testlist.campaignid}}</SF_Campaign><SF_ActionType>New Regular Gift</SF_ActionType><SF_CampaignMember>{{Contact.Attribute.testlist.campaignmemberid}}</SF_CampaignMember><First_Name>{{Contact.Attribute.testlist.firstname}}</First_Name><Surname>{{Contact.Attribute.testlist.lastname}}</Surname><Phone_number_01>{{Contact.Attribute.testlist.phone}}</Phone_number_01></record>"
   }
 }
 ```
-
-5. activiate the journey, validate result via nodejs server log and destination API endpoint
+5. fill in webhook url and Oauth 2.0 if required
+6. fill in pre/post run options if you need to run your own javascript, SFMC data binding variables such as InArguments are accessible. Pre-run script aimes to address use case where request logging or data transformation is required. Post-run script allows developers to transform the server response into a format that can be consumed back in SFMC via outArguments
+7. activiate the journey, validate result via nodejs server log and destination API endpoint
