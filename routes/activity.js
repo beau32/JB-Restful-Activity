@@ -1,5 +1,6 @@
 'use strict';
 var util = require( 'util' );
+var vm = require( 'vm' );
 var fs = require('fs');
 var axios = require('axios');
 const oauth = require('axios-oauth-client');
@@ -153,16 +154,15 @@ exports.execute = function( req, res ) {
 				msg = err.code;
 				res.status(200).send(msg);
 			}).finally(() => {
-                        	if (json.webhook)
-                                        instance({
-                                                "method":"post",
-                                                "url":json.webhook
-                                        }).then((ares)=> {
-                                                console.log('Webhook ');
-                                                console.log('Status:', ares.status);
-                                                console.log('Body: ', ares.data);
-                                        } );
-				
+				if (json.webhook)
+					instance({
+							"method":"post",
+							"url":json.webhook
+					}).then((ares)=> {
+							console.log('Webhook ');
+							console.log('Status:', ares.status);
+							console.log('Body: ', ares.data);
+					} );	
 			});
 
 	}catch(e){
