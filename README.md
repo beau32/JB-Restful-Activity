@@ -20,17 +20,12 @@
 
 ### How To Use
 
-1. Deploy to netlify using the button above
-
+1. Deploy to netlify using the button above, load the environment variables based on the ones in .env file
 2. Login to your account on Marketing Cloud
-
-3. Select Setup -> App Integration from navigation.
-
+3. Select Setup -> App Integration from navigation
 4. Select "Create New App"
-
-5. Create a custom activity for journey builder, and fill in the endpoint for the app, `{subdomain}.netlify.app/public/jbcustom/` hit save then hit finish.
-
-8. Go to Journey Builder and you should see the custom activity appearing in the bottom.
+5. Create a custom activity for journey builder, and fill in the endpoint for the app, `{subdomain}.netlify.app/public/jbcustom/` hit save then hit finish
+8. Go to Journey Builder and you should see the custom activity appearing in the bottom
 
 
 #### Re-deploy application to host
@@ -39,19 +34,14 @@ Now that you have updated your configurations to point to the appropriate resour
 
 #### Defining our test journey using a data extension as the source
 1. Log into the [Marketing Cloud](https://mc.exacttarget.com/cloud)
-
 2. Choose Journey Builder and create a new journey.
-
 3. Add a data extension source 
 
 
 #### Creating our Custom Activity
 1. Drag the custom activity from the list onto the Interaction Canvas
-
 2. Hover and click the activity
-
 3. The custom activity dialog should appear (this is loading from your app)
-
 4. fill in the request body using json object specified by axios. Leverage data binding to access any part of the data structure sent in from SFMC.
 
 example:
