@@ -1,4 +1,4 @@
-## JB Custom Activity - This is app allows SFMC journey builder to integrate with third party API in real time
+## JB RESTful Activity - This is app allows SFMC journey builder to integrate with third party API in real time
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/beau32/JB-Restful-Activity)
 
