@@ -29,14 +29,14 @@ app.use(cookieSession({secret: "JBCustom-CookieSecret"}));
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 //app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride());
 //app.use(favicon());
 //app.use(app.router);
-app.use(sstatic(path.join(__dirname, 'public')));
+app.use(express.static('public'))
 
 // Express in Development Mode
 if ('development' == app.get('env')) {
@@ -54,46 +54,7 @@ app.post('/JBcustom/validate/', activity.validate );
 app.post('/JBcustom/publish/', activity.publish );
 app.post('/JBcustom/execute/', activity.execute );
 
-// Abstract Event Handler
-app.post('/fireEvent/:type', function( req, res ) {
 
-    var call_body = null;
-    var call_url = url.parse(req.body.call_url);
-
-    if(req.body.call_body)
-        var call_body = req.body.call_body;
-        
-    console.log(call_url.href);
-
-    axios.post(call_url.href,call_body)
-        .then((ares) => {
-            console.log('Status:', ares.status);
-            console.log('Body: ', ares.data);
-            res.status(200).send(JSON.stringify(ares.data));
-
-        }).catch((err) => {
-            console.error(err);
-            res.status(200).send(err.response.data);
-    });
-
-});
-
-app.get('/clearList', function( req, res ) {
-	// The client makes this request to get the data
-   activity.logExecuteData = [];
-   res.status(200).send('Cleared');	
-});
-
-
-// Used to populate events which have reached the activity in the interaction we created
-app.get('/getActivityData', function( req, res ) {
-	// The client makes this request to get the data
-	if( !activity.logExecuteData.length ) {
-		res.status(200).send( {data: "No Found"} );
-	} else {
-		res.status(200).send( {data: activity.logExecuteData[activity.logExecuteData.length-1]} );
-	}
-});
 app.get('/config.json', function(req, res) {
         // Journey Builder looks for config.json when the canvas loads.
         // We'll dynamically generate the config object with a function

@@ -26,15 +26,15 @@
 			</select><br />
 			<label>Webhook URL: </label>
 			<input type="text" name="call_url" id="call_url"><br />
-
+			
 			<label>Pre Script: </label>
 			<textarea name="pre_script" id="pre_script" rows="7" cols="50">
-			</textarea>
+			</textarea><br />
 
 			<label>Post Script: </label>
 			<textarea name="post_script" id="post_script" rows="7" cols="50">
 
-			</textarea>
+			</textarea><br />
 
 			<input type="checkbox" id="oauth"/><label>Oauth 2.0?</label>
 
@@ -45,9 +45,13 @@
 				<input type="text" name="auth_id" id="auth_id"><br />
 				<label>Client Secret</label>
 				<input type="text" name="auth_secret" id="auth_secret"><br />
-			</div>
-
-
+			</div><br/>
+			<label>Retry: </label>
+			<select name="call_retry" id="call_retry">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+			</select><br />
 
 		</div>
 	</body>

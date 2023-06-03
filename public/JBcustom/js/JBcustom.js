@@ -41,6 +41,7 @@ define(["postmonger"], function (Postmonger) {
       values = payload["arguments"].execute.inArguments.filter(function (obj) {
         return (
           obj.hasOwnProperty("call_url") ||
+		  obj.hasOwnProperty("call_retry") ||
           obj.hasOwnProperty("call_body") ||
           obj.hasOwnProperty("pre_script") ||
 		  obj.hasOwnProperty("post_script") ||
@@ -55,6 +56,7 @@ define(["postmonger"], function (Postmonger) {
 
     if (values && values.length > 0) {
       $("#call_url").val(values[0].call_url);
+	  $("#call_url").val(values[0].call_retry);
       $("#call_body").val(values[1].call_body);
 	  $("#pre_script").val(values[2].pre_script);
       $("#post_script").val(values[2].post_script);
@@ -68,6 +70,7 @@ define(["postmonger"], function (Postmonger) {
     console.log("clickedNext");
 
     var urlvalue = $("#call_url").val();
+	var urlvalue = $("#call_retry").val();
     var bodyvalue = $("#call_body").val();
     var auth_url = $("#auth_url").val();
 
@@ -90,6 +93,7 @@ define(["postmonger"], function (Postmonger) {
       ].execute.inArguments.filter(function (obj) {
         return (
           obj.hasOwnProperty("call_body") ||
+		  obj.hasOwnProperty("call_retry") ||
           obj.hasOwnProperty("pre_script") ||
 		  obj.hasOwnProperty("post_script") ||
           obj.hasOwnProperty("auth_url") ||

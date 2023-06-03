@@ -6,6 +6,7 @@ var axios = require("axios");
 const oauth = require("axios-oauth-client");
 const tokenProvider = require("axios-token-interceptor");
 const axiosRetry = require("axios-retry");
+const async = require("async");
 
 require("axios-debug-log");
 
@@ -107,8 +108,14 @@ exports.execute = function (req, res) {
       if (key.hasOwnProperty("auth_secret")) {
         json.auth_secret = key.auth_secret;
       }
-      if (key.hasOwnProperty("webhook")) {
-        json.webhook = key.webhook;
+      if (key.hasOwnProperty("call_url")) {
+        json.call_url = key.call_url;
+      }
+      if (key.hasOwnProperty("pre_script")) {
+        json.pre_script = key.pre_script;
+      }
+      if (key.hasOwnProperty("post_script")) {
+        json.post_script = key.post_script;
       }
     }
 
@@ -144,28 +151,52 @@ exports.execute = function (req, res) {
 
     console.log(json);
     console.log("------");
+    async.series(
+      [
+        (callback) => {
+			if (json.post_script) {
+                const context = { inArguments: inArguments };
+                vm.createContext(context); // Contextify the object.
+                vm.runInContext(json.post_script, context);
+				inArguments = context.inArguments
+            }
+        },
+        (callback) => {
+        instance(json.call_body)
+            .then((ares) => {
+              msg = "OK";
+              res.status(200).send(msg);
+              return ares;
+            })
+            .catch((err) => {
+              console.error(err);
+              msg = err.code;
+              res.status(200).send(msg);
+            })
+            .finally((res) => {
+              if (json.call_url)
+                instance({
+                  method: "post",
+                  url: json.call_url,
+                }).then((webhookres) => {
 
-    instance(json.call_body)
-      .then((ares) => {
-        msg = "OK";
-        res.status(200).send(msg);
-        return ares;
-      })
-      .catch((err) => {
-        console.error(err);
-        msg = err.code;
-        res.status(200).send(msg);
-      })
-      .finally(() => {
-        if (json.webhook)
-          instance({
-            method: "post",
-            url: json.webhook,
-          }).then((ares) => {
-            console.log("Webhook ");
-            console.log("Status:", ares.status);
-            console.log("Body: ", ares.data);
-          });
+                  console.log("Webhook ");
+                  console.log("Status:", ares.status);
+                  console.log("Body: ", ares.data);
+
+				  if (json.post_script) {
+					const context = { inArguments: inArguments, response: res, webhook_response: webhookres.data };
+					vm.createContext(context); // Contextify the object.
+					vm.runInContext(json.post_script, context);
+				  }
+
+                });
+            });
+        },
+      ],
+      (err, results) => {
+        if (err) console.error(err);
+        console.log(results);
       });
   } catch (e) {
     console.error(e);

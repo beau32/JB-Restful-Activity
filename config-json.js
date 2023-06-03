@@ -5,7 +5,7 @@ module.exports = function configJSON(req) {
 			"icon": "JBcustom/images/jb-icon.jpg",
 			"iconSmall": "JBcustom/images/jb-icon.jpg"
 		},
-		"key": "d8f95a89-42c4-49f2-8297-eeb3e01f2ef2",
+		"key": `${process.env.APPKEY}`,
 		"type": "Rest",
 		"workflowApiVersion": "1.1",
 		"lang": {
@@ -15,7 +15,7 @@ module.exports = function configJSON(req) {
 			}
 		},
 		"edit": {
-			"url": `https://${req.headers.host}/JBcustom/`,
+			"url": `https://${process.env.DOMAIN}/JBcustom/`,
 			"height": 600,
 			"width": 800
 		},
@@ -31,34 +31,36 @@ module.exports = function configJSON(req) {
 				"inArguments": [
 					{ "emailAddress" : "{{InteractionDefaults.Email}}" },
 					{ "call_body" : "" },
+					{ "pre_script" : "" },
+					{ "post_script" : "" },
+					{ "call_retry" : "" },
+					{ "auth_url" : "" },
 					{ "call_url" : "" },
-					{ "call_retry": ""},
-					{"auth_url":""},
-					{"auth_id":""},
-					{"auth_secret":""},
+					{ "auth_id" : "" },
+					{ "auth_secret" : "" },
 					{ "contactIdentifier" : "{{Contact.Key}}" }
 				],
 				"outArguments": [],
 				"useJwt": true,
 				"timeout": 100000,
-				"url": `https://${req.headers.host}/JBcustom/execute`
+				"url": `https://${process.env.DOMAIN}/JBcustom/execute`
 			}
 		},
 		"configurationArguments": {
 			"save": {
-				"url": `https://${req.headers.host}/JBcustom/save`,
+				"url": `https://${process.env.DOMAIN}/JBcustom/save`,
 				"body": "",
 				"verb": "POST",
 				"useJwt": true
 			},
 			"publish": {
-				"url": `https://${req.headers.host}/JBcustom/publish`,
+				"url": `https://${process.env.DOMAIN}/JBcustom/publish`,
 				"body": "",
 				"verb": "POST",
 				"useJwt": true
 			},
 			"validate": {
-				"url": `https://${req.headers.host}/JBcustom/validate`,
+				"url": `https://${process.env.DOMAIN}/JBcustom/validate`,
 				"body": "",
 				"verb": "POST",
 				"useJwt": true
