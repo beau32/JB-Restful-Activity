@@ -14,8 +14,7 @@
 * Node.js (to test locally)
 * Must have an Salesforce Marketing Cloud account
 * Journey Builder and all associated applications  must be provisioned into this account
-* A publicly accessible web server or cloud (this app uses netlify)
-* Web Server or Cloud MUST support SSL
+* A publicly accessible web server or cloud (netlify)
 * Understanding of client-server communications, JavaScript, HTML(5), Node.js and Express
 
 ### How To Use
