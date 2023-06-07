@@ -49,15 +49,20 @@ Now that you have updated your configurations to point to the appropriate resour
 example:
 ```
 {
-  method: 'get',
+  method: 'post',
   url: 'https://apidev.example.com/',
   params: {
     apikey: "",
     function: 'InsertRecord',
     module: 'data',
     datasetid: 8088,
-    xmldata: "<record><SF_Status>Pending</SF_Status><SF_Campaign>{{Contact.Attribute.testlist.campaignid}}</SF_Campaign><SF_ActionType>New Regular Gift</SF_ActionType><SF_CampaignMember>{{Contact.Attribute.testlist.campaignmemberid}}</SF_CampaignMember><First_Name>{{Contact.Attribute.testlist.firstname}}</First_Name><Surname>{{Contact.Attribute.testlist.lastname}}</Surname><Phone_number_01>{{Contact.Attribute.testlist.phone}}</Phone_number_01></record>"
-  }
+  },
+  "data": {
+        "FirstName": "{{Contact.Attribute.testlist.firstname}}",
+        "salary": "{{Contact.Attribute.testlist.salary}}",
+        "age": "{{Contact.Attribute.testlist.age}}",
+        "id": {{Contact.Attribute.testlist.id}}
+    }
 }
 ```
 5. fill in webhook url and Oauth 2.0 if required
