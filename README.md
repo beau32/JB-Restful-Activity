@@ -1,7 +1,5 @@
 ## JB RESTful Activity - This is app allows SFMC journey builder to integrate with third party API in real time
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/beau32/JB-Restful-Activity)
-
 **Reference links:**
 * https://github.com/axios/axios
 * https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/how-data-binding-works.htm
@@ -19,7 +17,9 @@
 
 ### How To Use
 
-1. Deploy to netlify using the button above, load the environment variables based on the ones in .env file
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+1. Deploy to Rnder using the button above, load the environment variables based on the ones in .env file
 2. Login to your account on Marketing Cloud
 3. Select Setup -> App Integration from navigation
 4. Select "Create New App"
