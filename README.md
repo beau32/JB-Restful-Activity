@@ -31,6 +31,7 @@
 Now that you have updated your configurations to point to the appropriate resources, push your changes.
 
 
+
 #### Defining our test journey using a data extension as the source
 1. Log into the [Marketing Cloud](https://mc.exacttarget.com/cloud)
 2. Choose Journey Builder and create a new journey.
@@ -42,6 +43,8 @@ Now that you have updated your configurations to point to the appropriate resour
 2. Hover and click the activity
 3. The custom activity dialog should appear (this is loading from your app)
 4. fill in the request body using json object specified by axios. Leverage data binding to access any part of the data structure sent in from SFMC.
+
+<img width="667" alt="image" src="https://github.com/beau32/JB-Restful-Activity/assets/305363/f3439569-20ea-4d6a-96d7-307b7fcafb45">
 
 example:
 ```
