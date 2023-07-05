@@ -1,4 +1,5 @@
-define(['vendor/jquery.min','vendor/jquery.textcomplete.min'],function($){
+define(['vendor/jquery.min','vendor/jquery.textcomplete.min'],function($,t,c){
+
   $('.autocomplete-textarea').textcomplete([
     {
     // #3 - Rgular experession used to trigger search

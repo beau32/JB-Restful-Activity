@@ -10,6 +10,9 @@ requirejs.config({
 		'vendor/jquery.textcomplete.min':{
 
 		},
+		'vendor/codeflask.js':{
+			
+		},
 		'JBcustom': {
 			deps: ['vendor/jquery.min', 'vendor/jquery.textcomplete.min', 'vendor/postmonger']
 		}
