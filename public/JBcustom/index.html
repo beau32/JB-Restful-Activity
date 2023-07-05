@@ -7,10 +7,16 @@
 		<script data-main="js/main.js" src="js/require.js"></script>
 
 		<!--Styles-->
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+
 	</head>
 	<body>
-		<div id="container">
+		<script type="text/javascript">
+
+			
+		</script>
+		<div id="container" class="container">
 			<h1>Restful Custom Activity</h1>
 			<p>This Activity really only does one simple thing, and that's passing the data through to an endpoint.</p>
 			<p>Doing this by keeping the configuration to minimal and allowing maxiumn flexiblity, thus...using a simple restful custom activity to accomplish this. Refer to <a href="https://www.npmjs.com/package/axios" >Axios</a>.</p>
@@ -21,20 +27,17 @@
 				<h3>Request: </h3>
 			</div>
 			<label>Request Parameters (JSON): </label>
-			<textarea name="call_body" rows="14" cols="50" id="call_body"></textarea>
+			<textarea name="call_body" rows="14" cols="50" id="call_body" placeholder="js code here..." class="autocomplete-textarea"></textarea>
 
 			</select><br />
 			<label>Webhook URL: </label>
-			<input type="text" name="call_url" id="call_url"><br />
+			<input type="text" name="call_url" id="call_url" placeholder="https://"><br />
 			
 			<label>Pre Script: </label>
-			<textarea name="pre_script" id="pre_script" rows="7" cols="50">
-			</textarea><br />
+			<textarea name="pre_script" id="pre_script" rows="7" cols="50" placeholder="js code here..." class="autocomplete-textarea"></textarea><br />
 
 			<label>Post Script: </label>
-			<textarea name="post_script" id="post_script" rows="7" cols="50">
-
-			</textarea><br />
+			<textarea name="post_script" id="post_script" rows="7" cols="50" placeholder="js code here..."></textarea><br />
 
 			<input type="checkbox" id="oauth"/><label>Oauth 2.0?</label>
 

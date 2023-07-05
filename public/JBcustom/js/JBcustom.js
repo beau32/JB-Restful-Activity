@@ -1,7 +1,5 @@
-define(["postmonger"], function (Postmonger) {
+define(["postmonger",'jquery.min'], function (Postmonger,$) {
   "use strict";
-  var Postmonger = require("postmonger");
-  var $ = require("vendor/jquery.min");
 
   var connection = new Postmonger.Session();
   var payload = {};

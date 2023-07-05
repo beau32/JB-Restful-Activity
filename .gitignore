@@ -8,3 +8,4 @@ addon-manifest.json
 # Local Netlify folder
 .netlify
 .env
+.DS_Store
