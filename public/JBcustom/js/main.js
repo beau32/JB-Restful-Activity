@@ -4,15 +4,13 @@ requirejs.config({
 		postmonger: 'vendor/postmonger'
     },
     shim: {
-        'vendor/jquery.min': {
+        'jquery': {
             exports: '$'
         },
-		'vendor/jquery.textcomplete.min':{
-
+		'textcomplete':{
+			deps:['jquery']
 		},
-		'vendor/codeflask.js':{
-			
-		},
+		'postmonger': 'vendor/postmonger',
 		'JBcustom': {
 			deps: ['vendor/jquery.min', 'vendor/jquery.textcomplete.min', 'vendor/postmonger']
 		}

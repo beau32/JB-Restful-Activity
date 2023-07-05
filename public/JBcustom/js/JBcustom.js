@@ -1,55 +1,4 @@
-define(['vendor/jquery.min','vendor/jquery.textcomplete.min'],function($){
-
-  $('.autocomplete-textarea').textcomplete([
-    {
-    // #3 - Rgular experession used to trigger search
-    match: /(^|\s)\{\{(\w*(?:\s*\w*))$/,
-
-    // #4 - Function called at every new keystroke
-    search: function(word, callback) {
-      var l = [
-      'InArguments',
-      'InArguments.call_body',
-      'InArguments.call_url',
-      'InArguments.call_retry',
-      'InArguments.auth_url',
-      'InArguments.auth_id',
-      'InArguments.auth_secret',
-      'InArguments.pre_script',
-      'InArguments.post_script',
-      'OutArguments',
-      'Contact',
-      'Contact.ID',
-      'Contact.FirstName',
-      'Contact.LastName',
-      'Contact.Key',
-      'Contact.Default',
-      'Contact.Attribute',
-      'Contact.Attribute.Person.FirstName',
-      'Contact.Attribute.Person.LastName',
-      'InteractionDefaults',
-      'InteractionDefaults.Email',
-      'Context.IsTest',
-      'Context.PublicationId',
-      'Context.DefinitionId',
-      'Context.DefinitionInstanceId',
-      'Context.StartActivityKey',
-      'Context.VersionNumber',
-      'Event'
-      ]
-      callback($.map(l, function (word) {
-        return word.indexOf(word) === 0 ? word : null;
-      }));
-    },
-
-    // #6 - Template used to display the selected result in the textarea
-    replace: function (hit) {
-      return ' {{' + hit + '}}';
-    }
-    }])
-});
-
-define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
+define(["postmonger", 'jquery', 'vendor/jquery.textcomplete.min'], function (Postmonger, $) {
   "use strict";
 
   var connection = new Postmonger.Session();
@@ -58,7 +7,7 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
   var endpoints;
   var vdata = {};
 
-  $(window).ready(function () {
+  $(function () {
     connection.trigger("ready");
     console.log("ready");
     $("#oauth").change(function () {
@@ -80,9 +29,9 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
 
     var hasInArguments = Boolean(
       payload["arguments"] &&
-        payload["arguments"].execute &&
-        payload["arguments"].execute.inArguments &&
-        payload["arguments"].execute.inArguments.length > 0
+      payload["arguments"].execute &&
+      payload["arguments"].execute.inArguments &&
+      payload["arguments"].execute.inArguments.length > 0
     );
     var values;
 
@@ -90,10 +39,10 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
       values = payload["arguments"].execute.inArguments.filter(function (obj) {
         return (
           obj.hasOwnProperty("call_url") ||
-		  obj.hasOwnProperty("call_retry") ||
+          obj.hasOwnProperty("call_retry") ||
           obj.hasOwnProperty("call_body") ||
           obj.hasOwnProperty("pre_script") ||
-		  obj.hasOwnProperty("post_script") ||
+          obj.hasOwnProperty("post_script") ||
           obj.hasOwnProperty("auth_url") ||
           obj.hasOwnProperty("auth_id") ||
           obj.hasOwnProperty("auth_secret")
@@ -105,9 +54,9 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
 
     if (values && values.length > 0) {
       $("#call_url").val(values[0].call_url);
-	  $("#call_url").val(values[0].call_retry);
+      $("#call_url").val(values[0].call_retry);
       $("#call_body").val(values[1].call_body);
-	  $("#pre_script").val(values[2].pre_script);
+      $("#pre_script").val(values[2].pre_script);
       $("#post_script").val(values[2].post_script);
       $("#auth_url").val(values[3].auth_url);
       $("#auth_id").val(values[4].auth_id);
@@ -119,13 +68,13 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
     console.log("clickedNext");
 
     var urlvalue = $("#call_url").val();
-	var urlvalue = $("#call_retry").val();
+    var urlvalue = $("#call_retry").val();
     var bodyvalue = $("#call_body").val();
     var auth_url = $("#auth_url").val();
 
     var client_id = $("#auth_id").val();
     var call_retry = $("#pre_script").val();
-	var call_retry = $("#post_script").val();
+    var call_retry = $("#post_script").val();
     var client_secret = $("#auth_secret").val();
 
     connection.trigger("ready");
@@ -142,9 +91,9 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
       ].execute.inArguments.filter(function (obj) {
         return (
           obj.hasOwnProperty("call_body") ||
-		  obj.hasOwnProperty("call_retry") ||
+          obj.hasOwnProperty("call_retry") ||
           obj.hasOwnProperty("pre_script") ||
-		  obj.hasOwnProperty("post_script") ||
+          obj.hasOwnProperty("post_script") ||
           obj.hasOwnProperty("auth_url") ||
           obj.hasOwnProperty("auth_id") ||
           obj.hasOwnProperty("auth_secret")
@@ -154,9 +103,9 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
       if (!payload.name) payload.name = "JBCustom";
       payload["arguments"].execute.inArguments.push({ call_body: bodyvalue });
       payload["arguments"].execute.inArguments.push({ call_retry: pre_script });
-	  payload["arguments"].execute.inArguments.push({ call_retry: post_script });
+      payload["arguments"].execute.inArguments.push({ call_retry: post_script });
       payload["arguments"].execute.inArguments.push({ auth_id: auth_id });
-      payload["arguments"].execute.inArguments.push({auth_secret: auth_secret,});
+      payload["arguments"].execute.inArguments.push({ auth_secret: auth_secret, });
       payload["arguments"].execute.inArguments.push({ auth_url: auth_url });
 
       payload.metaData.isConfigured = true;
@@ -169,4 +118,52 @@ define(["vendor/postmonger",'vendor/jquery.min'], function (Postmonger,$) {
   });
 
   //connection.trigger('updateButton', { button: 'next', enabled: false });
+
+  $('.autocomplete-textarea').textcomplete([
+    {
+      // #3 - Rgular experession used to trigger search
+      match: /(^|\s)\{\{(\w*(?:\s*\w*))$/,
+
+      // #4 - Function called at every new keystroke
+      search: function (word, callback) {
+        var l = [
+          'InArguments',
+          'InArguments.call_body',
+          'InArguments.call_url',
+          'InArguments.call_retry',
+          'InArguments.auth_url',
+          'InArguments.auth_id',
+          'InArguments.auth_secret',
+          'InArguments.pre_script',
+          'InArguments.post_script',
+          'OutArguments',
+          'Contact',
+          'Contact.ID',
+          'Contact.FirstName',
+          'Contact.LastName',
+          'Contact.Key',
+          'Contact.Default',
+          'Contact.Attribute',
+          'Contact.Attribute.Person.FirstName',
+          'Contact.Attribute.Person.LastName',
+          'InteractionDefaults',
+          'InteractionDefaults.Email',
+          'Context.IsTest',
+          'Context.PublicationId',
+          'Context.DefinitionId',
+          'Context.DefinitionInstanceId',
+          'Context.StartActivityKey',
+          'Context.VersionNumber',
+          'Event'
+        ]
+        callback($.map(l, function (word) {
+          return word.indexOf(word) === 0 ? word : null;
+        }));
+      },
+
+      // #6 - Template used to display the selected result in the textarea
+      replace: function (hit) {
+        return ' {{' + hit + '}}';
+      }
+    }])
 });
