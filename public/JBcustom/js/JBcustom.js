@@ -1,4 +1,4 @@
-define(['vendor/jquery.min','vendor/jquery.textcomplete.min'],function($,t,c){
+define(['vendor/jquery.min','vendor/jquery.textcomplete.min'],function($){
 
   $('.autocomplete-textarea').textcomplete([
     {
