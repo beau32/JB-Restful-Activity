@@ -1,70 +1,23 @@
 requirejs.config({
-	"baseUrl": "vendor",
+	"baseUrl": "js/",
     paths: {
-        vendor: '../vendor',
-		postmonger: 'postmonger'
+		postmonger: 'vendor/postmonger'
     },
     shim: {
-        'jquery.min': {
+        'vendor/jquery.min': {
             exports: '$'
         },
+		'vendor/jquery.textcomplete.min':{
+
+		},
 		'JBcustom': {
-			deps: ['jquery.min', 'jquery.textcomplete.min', 'postmonger']
+			deps: ['vendor/jquery.min', 'vendor/jquery.textcomplete.min', 'vendor/postmonger']
 		}
     }
 });
 
-requirejs( ['jquery.min','jquery.textcomplete.min','../js/JBcustom'], function( $, JBcustom ) {
+requirejs( ['JBcustom'], function( JBcustom ) {
 	console.log( 'REQUIRE LOADED' );
-	
-		$('.autocomplete-textarea').textcomplete([
-			{
-			// #3 - Rgular experession used to trigger search
-			match: /(^|\s)\{\{(\w*(?:\s*\w*))$/,
-
-			// #4 - Function called at every new keystroke
-			search: function(word, callback) {
-				var l = [
-				'InArguments',
-				'InArguments.call_body',
-				'InArguments.call_url',
-				'InArguments.call_retry',
-				'InArguments.auth_url',
-				'InArguments.auth_id',
-				'InArguments.auth_secret',
-				'InArguments.pre_script',
-				'InArguments.post_script',
-				'OutArguments',
-				'Contact',
-				'Contact.ID',
-				'Contact.FirstName',
-				'Contact.LastName',
-				'Contact.Key',
-				'Contact.Default',
-				'Contact.Attribute',
-				'Contact.Attribute.Person.FirstName',
-				'Contact.Attribute.Person.LastName',
-				'InteractionDefaults',
-				'InteractionDefaults.Email',
-				'Context.IsTest',
-				'Context.PublicationId',
-				'Context.DefinitionId',
-				'Context.DefinitionInstanceId',
-				'Context.StartActivityKey',
-				'Context.VersionNumber',
-				'Event'
-				]
-				callback($.map(l, function (word) {
-					return word.indexOf(word) === 0 ? word : null;
-				}));
-			},
-
-			// #6 - Template used to display the selected result in the textarea
-			replace: function (hit) {
-				return ' {{' + hit + '}}';
-			}
-			}])
-
 });
 
 requirejs.onError = function( err ) {
