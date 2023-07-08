@@ -148,6 +148,9 @@ define(["postmonger", 'jquery','vendor/jquery.textcomplete.min'], function (Post
 
       if (!payload.name) payload.name = "JBCustom";
       payload.arguments.execute.inArguments = [];
+      payload.arguments.validate.inArguments = [];
+      payload.arguments.publish.inArguments = [];
+      payload.arguments.save.inArguments = [];
       payload.arguments.execute.inArguments.push({ 'call_url': call_url });
       payload.arguments.execute.inArguments.push({ 'call_body': call_body });
       payload.arguments.execute.inArguments.push({ 'call_retry': call_retry });

@@ -1,10 +1,4 @@
 {
     "configurations": [
-        {
-            "type": "chrome",
-            "name": "nodejs",
-            "request": "launch",
-            "url": "http://localhost:3000/"
-        }
     ]
 }

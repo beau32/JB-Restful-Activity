@@ -17,7 +17,7 @@ Validator.prototype.customFormats.getorpost = function (input) {
 };
 
 Validator.prototype.customFormats.retry = function (input) {
-  return input.search(/^\d{1}\|\d{1,2}$/) != -1;
+  return input.search(/^\d{1}$/) != -1;
 };
 
 Validator.prototype.customFormats.url = function (input) {
@@ -44,7 +44,7 @@ function logData(req) {
     cookies: req.cookies,
     ip: req.ip,
     path: req.path,
-    host: req.hostname,
+    host: req.host,
     fresh: req.fresh,
     stale: req.stale,
     protocol: req.protocol,
@@ -246,13 +246,13 @@ exports.validate = function (req, res) {
     type: "object",
     properties: {
       call_body: { $ref: "/axios" },
-      call_retry: { type: "string", format: "retry" },
-      auth_url: { type: "string", format: "url" },
-      auth_id: { type: "string", minLength: 1 },
-      auth_secret: { type: "string", minLength: 1 },
-      webhook: { type: "string", format: "url" },
+      call_retry: { type: "string", format: "retry", minLength: 0 },
+      auth_url: { type: "string", format: "url", minLength: 0 },
+      auth_id: { type: "string", minLength: 0 },
+      auth_secret: { type: "string", minLength: 0 },
+      call_url: { type: "string", format: "url", minLength: 0  },
     },
-    required: ["call_body", "call_retry"],
+    required: ["call_body"],
     dependencies: {
       auth_url: ["auth_id", "auth_secret"],
     },
@@ -268,6 +268,7 @@ exports.validate = function (req, res) {
 
     for (var key of val) {
       if (key.hasOwnProperty("call_body")) {
+        console.log('call body:');
         console.log(key.call_body);
         json.call_body = JSON.parse(key.call_body);
       }
@@ -283,8 +284,8 @@ exports.validate = function (req, res) {
       if (key.hasOwnProperty("auth_secret")) {
         json.auth_secret = key.auth_secret;
       }
-      if (key.hasOwnProperty("webhook")) {
-        json.webhook = key.webhook;
+      if (key.hasOwnProperty("call_url")) {
+        json.call_url = key.call_url;
       }
     }
 

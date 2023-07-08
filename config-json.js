@@ -51,16 +51,19 @@ module.exports = function configJSON(req) {
 				"url": `https://${process.env.DOMAIN}/JBcustom/execute`
 			},
 			"validate": {
+				"inArguments": [],
 				"url": `https://${process.env.DOMAIN}/JBcustom/validate`,
 				"verb": "POST",
 				"useJwt": true
 			},
 			"save": {
+				"inArguments": [],
 				"url": `https://${process.env.DOMAIN}/JBcustom/save`,
 				"verb": "POST",
 				"useJwt": true
 			},
 			"publish": {
+				"inArguments": [],
 				"url": `https://${process.env.DOMAIN}/JBcustom/publish`,
 				"body": "",
 				"verb": "POST",
