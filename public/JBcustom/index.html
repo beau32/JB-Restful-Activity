@@ -26,36 +26,37 @@
 			<div>
 				<h3>Request: </h3>
 			</div>
-			<label>Request Parameters (JSON): </label>
-			<textarea name="call_body" rows="14" cols="50" id="call_body" placeholder="js code here..." class="autocomplete-textarea"></textarea>
+			<form name="confform" id="confform">
+				<label>Request Parameters (JSON): </label>
+				<textarea name="call_body" rows="14" cols="50" id="call_body" placeholder="js code here..." class="autocomplete-textarea"></textarea>
 
-			</select><br />
-			<label>Webhook URL: </label>
-			<input type="text" name="call_url" id="call_url" placeholder="https://"><br />
-			
-			<label>Pre Script: </label>
-			<textarea name="pre_script" id="pre_script" rows="7" cols="50" placeholder="js code here..." class="autocomplete-textarea"></textarea><br />
+				</select><br />
+				<label>Webhook URL: </label>
+				<input type="text" name="call_url" id="call_url" placeholder="https://"><br />
+				
+				<label>Pre Script: </label>
+				<textarea name="pre_script" id="pre_script" rows="7" cols="50" placeholder="js code here..." class="autocomplete-textarea"></textarea><br />
 
-			<label>Post Script: </label>
-			<textarea name="post_script" id="post_script" rows="7" cols="50" placeholder="js code here..."></textarea><br />
+				<label>Post Script: </label>
+				<textarea name="post_script" id="post_script" rows="7" cols="50" placeholder="js code here..."></textarea><br />
 
-			<input type="checkbox" id="oauth"/><label>Oauth 2.0?</label>
+				<input type="checkbox" id="oauth"/><label>Oauth 2.0?</label>
 
-			<div id="oautharea" style="display:none">		
-				<label>Auth URL: </label>
-				<input type="text" name="auth_url" id="auth_url"><br />
-				<label>Client ID</label>
-				<input type="text" name="auth_id" id="auth_id"><br />
-				<label>Client Secret</label>
-				<input type="text" name="auth_secret" id="auth_secret"><br />
-			</div><br/>
-			<label>Retry: </label>
-			<select name="call_retry" id="call_retry">
-				<option value="0">0</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-			</select><br />
-
+				<div id="oautharea" style="display:none">		
+					<label>Auth URL: </label>
+					<input type="text" name="auth_url" id="auth_url"><br />
+					<label>Client ID</label>
+					<input type="text" name="auth_id" id="auth_id"><br />
+					<label>Client Secret</label>
+					<input type="text" name="auth_secret" id="auth_secret"><br />
+				</div><br/>
+				<label>Retry: </label>
+				<select name="call_retry" id="call_retry">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</select><br />
+			</form>
 		</div>
 	</body>
 </html>

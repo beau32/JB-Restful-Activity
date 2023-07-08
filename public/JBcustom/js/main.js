@@ -7,7 +7,7 @@ requirejs.config({
         'jquery': {
             exports: '$'
         },
-		'textcomplete':{
+		'jquery.textcomplete':{
 			deps:['jquery']
 		},
 		'postmonger': 'vendor/postmonger',

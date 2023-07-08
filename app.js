@@ -2,27 +2,20 @@
 // Module Dependencies
 // -------------------
 var express     = require('express');
-var http        = require('http');
-var https        = require('https');
 var path        = require('path');
-var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
 
-var connect = require('connect');
+var jwt = require('./lib/jwtDecoder.js');
 var logger  = require('winston');
-var cookieParser = require('cookie-parser');
 var methodOverride  = require('method-override')
 var favicon = require('serve-favicon')
 var errorHandler = require('errorhandler') 
 var cookieSession = require('cookie-session');
-var url = require('url');
-var axios = require('axios');
 
 var app = express();
 
 const configJSON = require('./config-json');
-
 app.use(cookieSession({secret: "JBCustom-CookieSecret"}));
 
 // Configure Express
@@ -42,7 +35,14 @@ app.use(express.static('public'))
 if ('development' == app.get('env')) {
   app.use(errorHandler());
 }
-
+//JWT Verification
+app.use(function(req, res, next){
+  var options = {
+    //appSignature: process.env.JWTSIGNINGSECRET
+  }
+  //JwtDecoder(options);
+  //jwt.JwtDecoder.decode(req);
+})
 // HubExchange Routes
 app.get('/', routes.index );
 app.get('/login', routes.login );

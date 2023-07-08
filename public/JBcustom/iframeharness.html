@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>Postmonger - Test Harness</title>
+
+    <!--Scripts-->
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/postmonger.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script type="text/javascript">
+            $(function(e){
+				
+				console.log('harness start');
+                var framename = '#iframe1'
+				
+				var connection1 = new Postmonger.Session({
+					connect: $(framename)
+				});
+
+				connection1.on('ready',function(e){
+					var j = {
+						'arguments': {
+							'execute': {
+								'inArguments':[]
+						}
+					},
+					'metaData': {
+						'isConfigured': ''
+					}};
+                    formvars = $.cookie('formvars');
+                    serializedString = formvars.replace(/\+/g, '%20');
+                    var formFieldArray = serializedString.split("&");
+
+                    formFieldArray.map((e)=>{
+                        nameValue = e.split("=");
+                        name = decodeURIComponent(nameValue[0]);
+                        value = decodeURIComponent(nameValue[1]);
+                        j.arguments.execute.inArguments.push({[name]:value});
+                    })
+
+					connection1.trigger('initActivity', j);
+				})
+				$('#click').click(function(e){
+					connection1.trigger('clickedNext');
+
+                    //save the form vars locally
+                    frame = $(framename).contents();
+                    seralisedform = frame.find('#confform').serialize();
+                    
+                    console.log('form vars');
+                    console.log(seralisedform);
+
+                    $.cookie("formvars", seralisedform);
+				})
+				connection1.on('updateActivity',(e)=> {
+
+				});
+				connection1.on('nextstep',(e)=> {
+					
+				});
+            });
+        </script>
+
+    <!--Styles-->
+        <style type="text/css">
+
+            .iframe {
+                border: 1px solid #ccc;
+                float: left;
+                height: 600px;
+                margin: 20px;
+                padding: 0;
+                width: 100%;
+            }
+            button{
+                margin-left: 600px;
+                border:1px solid #f9f68a; -webkit-border-radius: 3px; -moz-border-radius:      3px;border-radius: 3px;font-size:16px;font-family:arial, helvetica, sans-serif;   padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-  shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+                background-color: #fcfac0; background-image: -webkit-gradient(linear, left  top, left bottom, from(#fcfac0), to(#f6f283));
+                background-image: -webkit-linear-gradient(top, #fcfac0, #f6f283);
+                background-image: -moz-linear-gradient(top, #fcfac0, #f6f283);
+                background-image: -ms-linear-gradient(top, #fcfac0, #f6f283);
+                background-image: -o-linear-gradient(top, #fcfac0, #f6f283);
+                background-image: linear-gradient(to bottom, #fcfac0,  #f6f283);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fcfac0, endColorstr=#f6f283);
+            }
+            button:hover{
+                border:1px solid #f7f25f;
+                background-color: #faf68f; background-image: -webkit-gradient(linear, left  top, left bottom, from(#faf68f), to(#f3ed53));
+                background-image: -webkit-linear-gradient(top, #faf68f, #f3ed53);
+                background-image: -moz-linear-gradient(top, #faf68f, #f3ed53);
+                background-image: -ms-linear-gradient(top, #faf68f, #f3ed53);
+                background-image: -o-linear-gradient(top, #faf68f, #f3ed53);
+                background-image: linear-gradient(to bottom, #faf68f,  #f3ed53);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startC     olorstr=#faf68f, endColorstr=#f3ed53);
+            }
+        </style>
+</head>
+<body>
+    <div class="iframeCont">
+        <iframe class="iframe" id="iframe1" src="index.html"></iframe>
+		<button id="click" >ClickNext</button>
+        <div style="clear:both;"></div>
+    </div>
+</body>
+</html>

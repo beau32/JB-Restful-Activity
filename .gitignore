@@ -2,10 +2,6 @@ node_modules
 *.swp
 *.swo
 *.log
-addon-manifest.json
 
-
-# Local Netlify folder
-.netlify
 .env
 .DS_Store
