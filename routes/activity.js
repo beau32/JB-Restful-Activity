@@ -186,7 +186,7 @@ exports.execute = function (req, res) {
                   url: json.call_url,
                 }).then((webhookres) => {
                   console.log('running post_script');
-                  
+
                   if (json.post_script) {
                     const context = { inArguments: inArguments, response: res, webhook_response: webhookres.data };
                     vm.createContext(context); // Contextify the object.
@@ -224,7 +224,8 @@ exports.publish = function (req, res) {
 exports.validate = function (req, res) {
   // Data from the req and put it in an array accessible to the main app, validated to ensure it has the right element to execute the call.
   var validator = new Validator();
-  if (Object.keys(req.body.inArguments).length < 1) {
+
+  if (req.body.inArguments.length < 1) {
     res.status(200).send("Invalid InArguments");
     return;
   }
@@ -259,9 +260,11 @@ exports.validate = function (req, res) {
   validator.addSchema(callbody_schema, "/axios");
 
   try {
-    console.log(req.body.inArguments);
+    
     var val = Object.values(req.body.inArguments);
     var json = {};
+    console.log('inarguments val:');
+    console.log(val);
 
     for (var key of val) {
       if (key.hasOwnProperty("call_body")) {

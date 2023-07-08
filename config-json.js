@@ -6,6 +6,7 @@ module.exports = function configJSON(req) {
 		"executionMode": "Production",
 		"status": "Draft",
 		"metaData": {
+			"isConfigured": true,
 			"icon": "JBcustom/images/jb-icon.jpg",
 			"iconSmall": "JBcustom/images/jb-icon.jpg"
 		},
@@ -69,9 +70,6 @@ module.exports = function configJSON(req) {
 				"verb": "POST",
 				"useJwt": true
 			}
-		},
-		metaData: {
-			isConfigured: true,
 		}
 	};
 };
