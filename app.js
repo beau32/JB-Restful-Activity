@@ -38,6 +38,9 @@ if ('development' == app.get('env')) {
 //JWT Verification
 
 app.use(function(req, res, next){
+  console.log(req.url);
+  console.log(req.body);
+  
   var options = {
     //appSignature: process.env.JWTSIGNINGSECRET
   }

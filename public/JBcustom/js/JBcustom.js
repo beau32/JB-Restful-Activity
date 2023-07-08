@@ -105,15 +105,9 @@ define(["postmonger", 'jquery','vendor/jquery.textcomplete.min'], function (Post
     console.log(values);
 
     //populate the form with values if previous saved
-    if (values && values.length > 0) {
-      $("#call_body").val(values[0].call_body);
-      $("#call_url").val(values[1].call_url);
-      $("#pre_script").val(values[2].pre_script);
-      $("#post_script").val(values[3].post_script);
-      $("#auth_url").val(values[4].auth_url);
-      $("#auth_id").val(values[5].auth_id);
-      $("#auth_secret").val(values[6].auth_secret);
-      $("#call_retry").val(values[7].call_retry);
+    for (const property in values) {
+      var k = Object.keys(values[property])
+      $("#"+k).val(values[property][k]);
     }
   });
 

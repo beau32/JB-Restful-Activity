@@ -2,7 +2,7 @@
 
 // Deps
 var activity = require('./activity');
-var appstr = Math.random() * (11000 - 10000) + 10000;;
+var appstr = Math.random() * (11000 - 10000) + 10000;
 /*
  * GET home page.
  */

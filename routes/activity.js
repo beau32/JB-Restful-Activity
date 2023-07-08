@@ -82,8 +82,8 @@ exports.save = function (req, res) {
  */
 exports.execute = function (req, res) {
   // Data from the req and put it in an array accessible to the main app.
-  //console.log( req.body );
-  //console.log( "------" );
+  console.log(req.body);
+  console.log("------");
 
   var inArguments = req.body.inArguments;
   var json = {};
@@ -151,18 +151,23 @@ exports.execute = function (req, res) {
 
     console.log(json);
     console.log("------");
+
+    //pre script runs first, then execute axio callbody, then webhook, then post script
     async.series(
       [
         (callback) => {
-			if (json.post_script) {
-                const context = { inArguments: inArguments };
-                vm.createContext(context); // Contextify the object.
-                vm.runInContext(json.post_script, context);
-				inArguments = context.inArguments
-            }
+          if (json.pre_script) {
+            console.log('running pre_script');
+
+            const context = { inArguments: inArguments };
+            vm.createContext(context); // Contextify the object.
+            vm.runInContext(json.pre_script, context);
+            inArguments = context.inArguments
+          }
         },
         (callback) => {
-        instance(json.call_body)
+          console.log('running axio callbody');
+          instance(json.call_body)
             .then((ares) => {
               msg = "OK";
               res.status(200).send(msg);
@@ -174,21 +179,19 @@ exports.execute = function (req, res) {
               res.status(200).send(msg);
             })
             .finally((res) => {
+              console.log('running webhook');
               if (json.call_url)
                 instance({
                   method: "post",
                   url: json.call_url,
                 }).then((webhookres) => {
-
-                  console.log("Webhook ");
-                  console.log("Status:", ares.status);
-                  console.log("Body: ", ares.data);
-
-				  if (json.post_script) {
-					const context = { inArguments: inArguments, response: res, webhook_response: webhookres.data };
-					vm.createContext(context); // Contextify the object.
-					vm.runInContext(json.post_script, context);
-				  }
+                  console.log('running post_script');
+                  
+                  if (json.post_script) {
+                    const context = { inArguments: inArguments, response: res, webhook_response: webhookres.data };
+                    vm.createContext(context); // Contextify the object.
+                    vm.runInContext(json.post_script, context);
+                  }
 
                 });
             });
