@@ -15,7 +15,10 @@ body {
       text-align: left;
       width: 60%;
   }
-  
+  .form-group {
+    margin-bottom: 50px;
+
+  }
   .centered {
       text-align: center;
   }
