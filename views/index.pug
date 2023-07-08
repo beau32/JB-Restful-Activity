@@ -7,13 +7,26 @@ block content
   else
     div.authenticatedContent
 
-    p.centered Use the form below to see the Hello World Interaction operate. Results are displayed below the form.
+    p.centered Use the form below to see the JBCustom Interaction operate. Results are displayed below the form.
+    div.form-group 
+        
+        div 
+            label(for="clientid") clientid :
+            input(type="text", id='clientid', class="form-control")
+        div 
+            label(for="clientsecret") clientsecret: 
+            input(type="text", id='clientsecret', class="form-control")
+        div
+            label(for="journey event id") journeyeventid:
+            input(type="text", id='journeyeventid', class="form-control")
+        div.buttonWrap
+            button(id='fire', ) Fire Journey Event
     div#input
         div
             h3 Event List
             ul.events
         div.buttonWrap
-            button(id='fetch') Get latest results
+            button(id='fetch', ) Get latest results
         div.buttonWrap
             button(id='clear') Clear Activity Results
         ul.results

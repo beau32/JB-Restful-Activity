@@ -70,6 +70,12 @@ app.get('/config.json', function(req, res) {
   return res.status(200).json(configJSON(req));
 });
 
+app.get('/getActivityData', (req,res) => {
+  return res.status(200).json(activity.logExecuteData);
+});
+app.get('/fireEvent', (req,res) => {
+  return res.status(200).json(activity.logExecuteData);
+});
 app.listen(app.get('port'),function (parent) {
   console.log('Express server listening on port ' + app.get('port'));
 });

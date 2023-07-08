@@ -6,30 +6,23 @@
 // Make sure jQuery is loaded first
 $(function() {
 
-    // Cache some vars
-    var $call_url = $('#call_url');
-    var $call_body = $('#call_body');
-    
-    //var $emailInput     = $('#email');
-    //var $oes            = $('#originEventStart');
-    var $emailSubmit    = $('#emailSubmit');
+    var $fireSubmit    = $('#fire');
     var $reset          = $('#reset');
     var $clear          = $('#clear');
     var $fetch          = $('#fetch');
     var $results        = $('ul.results');
 
     // When someone submits this form, fire the event to the custom trigger
-    $emailSubmit.on('click', function( evt ) {
+    $fireSubmit.on('click', function( evt ) {
        
         var reqBody     = {
-            call_url:  $call_url.val(),
-            call_body: $call_body.val()
+            clientid:  $('#clientid').val(),
+            clientsecret: $('#clientsecret').val(),
         };
-        console.log(reqBody);
+        
         // Disable the inputs until we receive a resposne
-        $call_url.attr( 'disabled', 'disabled' );
-        $call_body.attr( 'disabled', 'disabled' );
-        $emailSubmit.attr( 'disabled', 'disabled' );
+        
+        $fireSubmit.attr( 'disabled', 'disabled' );
 
         $.ajax( '/fireEvent/post', {
             type: 'POST',
@@ -44,9 +37,9 @@ $(function() {
             },
             complete: function() {
                 // Enable the inputs until we receive a resposne
-                $call_url.removeAttr( 'disabled' );
-                $call_body.removeAttr( 'disabled' );
-                $emailSubmit.removeAttr( 'disabled' );
+                $('#clientid').removeAttr( 'disabled' );
+                $('#clientsecret').removeAttr( 'disabled' );
+                $fireSubmit.removeAttr( 'disabled' );
             }
         });
     });

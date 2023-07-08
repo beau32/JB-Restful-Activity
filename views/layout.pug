@@ -5,8 +5,9 @@ head
   title= pageTitle
   meta(name='description', content='Validates Journey Builder config.js files for Custom Activities')
   meta(name='viewport', content='width=device-width, initial-scale=1')
-  link(rel='stylesheet', href='stylesheets/normalize-css/normalize.css')
+  link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
   link(rel='stylesheet', href='/stylesheets/style.css')
+
 body!= body
   
   div#interface
@@ -15,7 +16,7 @@ body!= body
           if errorMessage
               strong= errorMessage
           else
-              strong Journey Builder Custom Activity 
+              strong RESTful Custom Activity 
       hr
       block content
 
