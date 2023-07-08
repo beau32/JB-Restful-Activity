@@ -1,11 +1,10 @@
 module.exports = function configJSON(req) {
 	return {
-		triggers: [],
-		goals: [],
-		entryMode: "SingleEntryAcrossAllVersions",
-		executionMode: "Production",
-		status: "Draft",
-		
+		"triggers": [],
+		"goals": [],
+		"entryMode": "SingleEntryAcrossAllVersions",
+		"executionMode": "Production",
+		"status": "Draft",
 		"metaData": {
 			"icon": "JBcustom/images/jb-icon.jpg",
 			"iconSmall": "JBcustom/images/jb-icon.jpg"

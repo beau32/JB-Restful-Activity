@@ -36,13 +36,16 @@ if ('development' == app.get('env')) {
   app.use(errorHandler());
 }
 //JWT Verification
+
 app.use(function(req, res, next){
   var options = {
     //appSignature: process.env.JWTSIGNINGSECRET
   }
   //JwtDecoder(options);
   //jwt.JwtDecoder.decode(req);
-})
+  next();
+});
+
 // HubExchange Routes
 app.get('/', routes.index );
 app.get('/login', routes.login );
@@ -56,9 +59,10 @@ app.post('/JBcustom/execute/', activity.execute );
 
 
 app.get('/config.json', function(req, res) {
-        // Journey Builder looks for config.json when the canvas loads.
-        // We'll dynamically generate the config object with a function
-        return res.status(200).json(configJSON(req));
+  
+  // Journey Builder looks for config.json when the canvas loads.
+  // We'll dynamically generate the config object with a function
+  return res.status(200).json(configJSON(req));
 });
 
 app.listen(app.get('port'),function (parent) {
