@@ -49,12 +49,14 @@ module.exports = function configJSON(req) {
 				"useJwt": true,
 				"timeout": 100000,
 				"url": `https://${process.env.DOMAIN}/JBcustom/execute`
-			}
-		},
-		"configurationArguments": {
+			},
+			"validate": {
+				"url": `https://${process.env.DOMAIN}/JBcustom/validate`,
+				"verb": "POST",
+				"useJwt": true
+			},
 			"save": {
 				"url": `https://${process.env.DOMAIN}/JBcustom/save`,
-				"body": "",
 				"verb": "POST",
 				"useJwt": true
 			},
@@ -64,12 +66,6 @@ module.exports = function configJSON(req) {
 				"verb": "POST",
 				"useJwt": true
 			},
-			"validate": {
-				"url": `https://${process.env.DOMAIN}/JBcustom/validate`,
-				"body": "",
-				"verb": "POST",
-				"useJwt": true
-			}
 		}
 	};
 };

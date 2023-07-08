@@ -156,6 +156,9 @@ define(["postmonger", 'jquery','vendor/jquery.textcomplete.min'], function (Post
       payload.arguments.execute.inArguments.push({ 'auth_id': auth_id });
       payload.arguments.execute.inArguments.push({ 'auth_secret': auth_secret, });
       payload.arguments.execute.inArguments.push({ 'auth_url': auth_url });
+      payload.arguments.validate.inArguments = payload.arguments.execute.inArguments
+      payload.arguments.publish.inArguments = payload.arguments.execute.inArguments
+      payload.arguments.save.inArguments = payload.arguments.execute.inArguments
 
       payload.metaData.isConfigured = true;
       console.log("output form vars");
