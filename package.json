@@ -7,11 +7,11 @@
     "development": "source .env && nodemon app.js"
   },
   "dependencies": {
-    "acorn": "^8.8.2",
+    "acorn": "^8.10.0",
     "axios": "^1.4.0",
     "axios-debug-log": "^1.0.0",
     "axios-oauth-client": "^2.0.2",
-    "axios-retry": "^3.5.0",
+    "axios-retry": "^3.5.1",
     "axios-token-interceptor": "^0.2.0",
     "body-parser": "^1.20.2",
     "character-parser": "^4.0.0",
@@ -26,19 +26,19 @@
     "jsonschema": "^1.4.1",
     "jwt-simple": "^0.5.6",
     "method-override": "^3.0.0",
-    "node": "^20.2.0",
+    "node": "^20.4.0",
     "node-dev": "^8.0.0",
-    "npm-check-updates": "^16.10.12",
+    "npm-check-updates": "^16.10.15",
     "pug": "^3.0.2",
     "request": "^2.88.2",
     "require": "^2.4.20",
     "serve-favicon": "^2.5.0",
     "serve-static": "^1.15.0",
-    "url": "^0.11.0",
+    "url": "^0.11.1",
     "winston": "^3.9.0"
   },
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.0.0"
   }
 }
