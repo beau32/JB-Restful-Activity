@@ -14,6 +14,7 @@
 				var j = {
                     'arguments': {
                         'execute': {
+                            'url': '/Jbcustom/execute',
                             'inArguments':[]
                         },
                         'validate': {
@@ -80,6 +81,28 @@
                         data: d
                       });
 				});
+                $('#Execute').click(function(e){
+                    console.log('execute');
+                    var formvars = $('form').serialize();
+                    var d = JSON.stringify(j.arguments.execute);
+
+                    serializedString = formvars.replace(/\+/g, '%20');
+                    var formFieldArray = serializedString.split("&");
+
+                    formFieldArray.map((e)=>{
+                        nameValue = e.split("=");
+                        name = decodeURIComponent(nameValue[0]);
+                        value = decodeURIComponent(nameValue[1]);
+                        j.arguments.execute.inArguments.push({[name]:value});
+                    })
+
+					$.ajax({
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: j.arguments.execute.url,
+                        data: d
+                      });
+				});
 				connection1.on('updateActivity',(e)=> {
 
 				});
@@ -125,6 +148,7 @@
     <div class="iframeCont">
         <iframe class="iframe" id="iframe1" src="index.html"></iframe>
 		<button id="click" >ClickNext</button>
+        <button id="Execute" >Execute</button>
         <button id="Validate" >Validate</button>
         <button id="Publish" >Publish</button>
         <button id="Save" >Save</button>

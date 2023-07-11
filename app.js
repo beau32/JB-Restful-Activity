@@ -3,7 +3,8 @@
 // -------------------
 var express     = require('express');
 var path        = require('path');
-var routes      = require('./routes');
+var cors = require('cors');
+var routes      = require('./routes/index');
 var activity    = require('./routes/activity');
 
 var jwt = require('./lib/jwtDecoder.js');
@@ -33,12 +34,15 @@ app.use(favicon('public/favicon.ico'));
 app.use(express.static('public'))
 
 // Express in Development Mode
-if ('development' == app.get('env')) {
+if ('development' == process.env.NODE_ENV) {
   app.use(errorHandler());
 }
 //JWT Verification
 
 app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", process.env.DOMAIN); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
   console.log('req url: '+req.url);
   console.log('req body:');
   console.log(req.body);
@@ -62,6 +66,7 @@ app.post('/JBcustom/validate/', activity.validate );
 app.post('/JBcustom/publish/', activity.publish );
 app.post('/JBcustom/execute/', activity.execute );
 
+app.post('/fireEvent',cors(), routes.fireEvent);
 
 app.get('/config.json', function(req, res) {
   
@@ -73,11 +78,12 @@ app.get('/config.json', function(req, res) {
 app.get('/getActivityData', (req,res) => {
   return res.status(200).json(activity.logExecuteData);
 });
-app.get('/fireEvent', (req,res) => {
-  return res.status(200).json(activity.logExecuteData);
+
+app.get('/clearList', (req,res) => {
+  activity.logExecuteData=[];
+  return res.status(200);
 });
+
 app.listen(app.get('port'),function (parent) {
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-

@@ -9,21 +9,29 @@ block content
 
     p.centered Use the form below to see the JBCustom Interaction operate. Results are displayed below the form.
     div.form-group 
+    form(action="" id='form') 
+        div 
+            label(for="sfmcdomain") sfmcdomain :
+            input(type="text", id='sfmcdomain', class="form-control" name='sfmcdomain') 
         div 
             label(for="clientid") clientid :
-            input(type="text", id='clientid', class="form-control")
+            input(type="text", id='clientid', class="form-control" name='clientid')
         div 
-            label(for="clientsecret") clientsecret: 
-            input(type="text", id='clientsecret', class="form-control")
-        div
-            label(for="journey event id") journeyeventid:
-            input(type="text", id='journeyeventid', class="form-control")
+            label(for="clientsecret") clientsecret :
+            input(type="text", id='clientsecret', class="form-control" name='clientsecret')
+        div 
+            label(for="journey event id") eventbody:
+            textarea(type="text", id='eventbody', class="form-control" name='eventbody' rows=15)
         div.buttonWrap
             button(id='fire', ) Fire Journey Event
+        div.buttonWrap
+            button(id='reset', ) Reset
+        ui.events
+
     div#input
         div
             h3 Event List
-            ul.events
+            
         div.buttonWrap
             button(id='fetch', ) Get latest results
         div.buttonWrap

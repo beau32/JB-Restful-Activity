@@ -1,7 +1,7 @@
 "use strict";
-var util = require("util");
+
 var vm = require("vm");
-var fs = require("fs");
+
 var axios = require("axios");
 const oauth = require("axios-oauth-client");
 const tokenProvider = require("axios-token-interceptor");
@@ -80,10 +80,10 @@ exports.save = function (req, res) {
 /*
  * POST Handler for /execute/ route of Activity.
  */
-exports.execute = function (req, res) {
+exports.execute = async function (req, res) {
   // Data from the req and put it in an array accessible to the main app.
-  console.log(req.body);
-  console.log("------");
+
+  console.log("------execute------");
 
   var inArguments = req.body.inArguments;
   var json = {};
@@ -128,7 +128,7 @@ exports.execute = function (req, res) {
     }
 
     if (json.auth_url) {
-      const getAuthorizationCode = oauth.client(axios.create(), {
+      const getAuthorizationCode = await oauth.client(axios.create(), {
         url: json.auth_url,
         grant_type: "client_credentials",
         client_id: json.auth_id,
@@ -150,57 +150,25 @@ exports.execute = function (req, res) {
     }
 
     console.log(json);
-    console.log("------");
+    console.log("------form vars-----");
 
     //pre script runs first, then execute axio callbody, then webhook, then post script
-    async.series(
-      [
-        (callback) => {
-          if (json.pre_script) {
-            console.log('running pre_script');
+    if (json.pre_script) {
+      console.log('running pre script');
+      inArguments = await run_script(json.pre_script, inArguments);
+    }
+    console.log('running callbody');
+    inArguments = await postreq(instance,json.call_body, inArguments);
+    if (json.call_url) {
+      console.log('running webhook');
+      inArguments = await postreq(instance,json.call_url, inArguments);
+    }
+    if (json.post_script) {
+      console.log('running post script');
+      inArguments = await run_script(json.post_script, inArguments);
+    }
 
-            const context = { inArguments: inArguments };
-            vm.createContext(context); // Contextify the object.
-            vm.runInContext(json.pre_script, context);
-            inArguments = context.inArguments
-          }
-        },
-        (callback) => {
-          console.log('running axio callbody');
-          instance(json.call_body)
-            .then((ares) => {
-              msg = "OK";
-              res.status(200).send(msg);
-              return ares;
-            })
-            .catch((err) => {
-              console.error(err);
-              msg = err.code;
-              res.status(200).send(msg);
-            })
-            .finally((res) => {
-              console.log('running webhook');
-              if (json.call_url)
-                instance({
-                  method: "post",
-                  url: json.call_url,
-                }).then((webhookres) => {
-                  console.log('running post_script');
 
-                  if (json.post_script) {
-                    const context = { inArguments: inArguments, response: res, webhook_response: webhookres.data };
-                    vm.createContext(context); // Contextify the object.
-                    vm.runInContext(json.post_script, context);
-                  }
-
-                });
-            });
-        },
-      ],
-      (err, results) => {
-        if (err) console.error(err);
-        console.log(results);
-      });
   } catch (e) {
     console.error(e);
     msg = e.message;
@@ -211,13 +179,34 @@ exports.execute = function (req, res) {
 /*
  * POST Handler for /publish/ route of Activity.
  */
-exports.publish = function (req, res) {
+exports.publish = (req, res) => {
   // Data from the req and put it in an array accessible to the main app.
   //console.log( req.body );
   logData(req);
   res.status(200).send("Publish");
 };
 
+function run_script (script, data) {
+  const context = { inArguments: data };
+  vm.createContext(context); // Contextify the object.
+  vm.runInContext(script, context);
+  return context;
+};
+function postreq (instance, req, data) {
+  console.log('running axios');
+  return instance(req)
+    .then((ares) => {
+      msg = "OK";
+      res.status(200).send(msg);
+      return ares;
+    })
+    .catch((err) => {
+      console.log('ERROR')
+      console.error(err);
+      msg = err.code;
+      res.status(200).send(msg);
+    });
+}
 /*
  * POST Handler for /validate/ route of Activity.
  */
@@ -250,7 +239,7 @@ exports.validate = function (req, res) {
       auth_url: { type: "string", format: "url", minLength: 0 },
       auth_id: { type: "string", minLength: 0 },
       auth_secret: { type: "string", minLength: 0 },
-      call_url: { type: "string", format: "url", minLength: 0  },
+      call_url: { type: "string", format: "url", minLength: 0 },
     },
     required: ["call_body"],
     dependencies: {
@@ -260,7 +249,7 @@ exports.validate = function (req, res) {
   validator.addSchema(callbody_schema, "/axios");
 
   try {
-    
+
     var val = Object.values(req.body.inArguments);
     var json = {};
     console.log('inarguments val:');
