@@ -197,14 +197,14 @@ function postreq (instance, req, data) {
   return instance(req)
     .then((ares) => {
       msg = "OK";
-      res.status(200).send(msg);
+      ares.status(200).send(msg);
       return ares;
     })
     .catch((err) => {
       console.log('ERROR')
       console.error(err);
       msg = err.code;
-      res.status(200).send(msg);
+      ares.status(200).send(msg);
     });
 }
 /*
